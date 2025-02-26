@@ -124,7 +124,7 @@ public class SimpleCustomEditor : EditorWindow
     private void SetupTextHandler()
     {
         VisualElement root = rootVisualElement;
-
+        
         TextField field = root.Q<TextField>("textfield1");
 
 
@@ -182,13 +182,24 @@ public class SimpleCustomEditor : EditorWindow
     {
         VisualElement root = rootVisualElement;
 
-        Slider slider = root.Q<Slider>("slider1");
+        SliderInt intSlider = root.Q<SliderInt>("slider1");
+        Slider floatSlider = root.Q<Slider>("slider2");
 
-        slider.RegisterCallback<ChangeEvent<int>>(PrintIntSliderMessage);
+        intSlider.RegisterCallback<ChangeEvent<int>>(PrintIntSliderMessage);
+        floatSlider.RegisterCallback<ChangeEvent<float>>(PrintFloatSliderMessage);
     }
 
 
     private void PrintIntSliderMessage(ChangeEvent<int> evt) 
+    {
+        VisualElement root = rootVisualElement;
+        SliderInt slider = evt.currentTarget as SliderInt;
+
+        Debug.Log("Value of '" + slider.name + "' set to '" + evt.newValue + "'");
+    }
+
+
+    private void PrintFloatSliderMessage(ChangeEvent<float> evt) 
     {
         VisualElement root = rootVisualElement;
         Slider slider = evt.currentTarget as Slider;
