@@ -13,8 +13,8 @@ public class SimpleCustomEditor : EditorWindow
 
     public static void ShowExample()
     {
-        SimpleCustomEditor wnd = GetWindow<SimpleCustomEditor>();
-        wnd.titleContent = new GUIContent("Een eigen editor");
+        SimpleCustomEditor window = GetWindow<SimpleCustomEditor>();
+        window.titleContent = new GUIContent("Een eigen editor");
     }
 
 
@@ -27,25 +27,28 @@ public class SimpleCustomEditor : EditorWindow
         // Each editor window contains a root VisualElement object
         VisualElement root = rootVisualElement;
 
-        // VisualElements objects can contain other VisualElement following a tree hierarchy.
-        VisualElement label = new Label("Hello World! From C#");
-        root.Add(label);
-
 // Option 1:
-        // Instantiate UXML (from the UI Builder). This brings in the button1.
+        // Instantiate UXML (from the UI Builder).
         // The UI Builder can be found in the Unity Editor: Window > UI Toolkit > UI Builder
+        // The generated UXML file from the UI Toolkit is 'SimpleCustomEditor.uxml' (in the same directory as this file)
         VisualElement labelFromUXML = m_VisualTreeAsset.Instantiate();
         root.Add(labelFromUXML);
 
 
 // Option 2:
-        // Import UXML created manually (The SimpleCustomEditor_UXML.uxml in the same directory as this file)
+        // Import manually created UXML (The Handwritten_UXML.uxml in the same directory as this file)
         VisualTreeAsset visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/Handwritten_UXML.uxml");
         VisualElement myLabelFromUXML = visualTree.Instantiate();
         root.Add(myLabelFromUXML);
 
 
 // Option 3:
+        // Make my own label in this C# code
+        Label label = new Label();
+        label.name = "label1";
+        label.text = "The elements below were created with C# code";
+        root.Add(label);
+
         // Make my own button in this C# code
         Button button = new Button();
         button.name = "button3";
@@ -62,7 +65,7 @@ public class SimpleCustomEditor : EditorWindow
         root.Add(toggle);
 
         // Make my own VisualElement (in this case a red block with text and a textfield in it)
-        var myElement = new VisualElement();
+        VisualElement myElement = new VisualElement();
         myElement.Add(new Label("A label in a visualElement"));
         myElement.Add(new Label("A second label in the same visualElement"));
         TextField myTextfield = new TextField();
@@ -75,14 +78,17 @@ public class SimpleCustomEditor : EditorWindow
         root.Add(myElement);
 
 
-        //Call the event handler
+        //Call the event handlers
         SetupButtonHandler();
         SetupTextHandler();
         SetupKeyHandler();
         SetupSliderHandler();
+        SetupVector2Handler();
     }
 
 
+
+//-----------------------------------Event Handlers for button clicks-----------------------------------------------------
 
     //Functions as the event handlers for your button click and number counts
     private void SetupButtonHandler()
@@ -121,6 +127,9 @@ public class SimpleCustomEditor : EditorWindow
     }
 
 
+
+//-----------------------------------Event Handlers for text fields-------------------------------------------------------
+
     private void SetupTextHandler()
     {
         VisualElement root = rootVisualElement;
@@ -149,18 +158,24 @@ public class SimpleCustomEditor : EditorWindow
         // Option 1: Ask for the name of the textfield
         //TextField field = root.Q<TextField>("textfield1");
 
-        // Option 2: Ask for the target of the event
+        // Option 2: Ask for the target of the event (which is also the textfield)
         TextField field = evt.currentTarget as TextField;
 
 
-        Debug.Log("Value of '" + field.name + "' set to '" + evt.newValue + "'");
+        // Option 1: Log the new value given by the event
+        //Debug.Log("Value of '" + field.name + "' set to '" + evt.newValue + "'");
+
+        // Option 2: Log the current value of the variable you just changed
+        Debug.Log("Value of '" + field.name + "' set to '" + field.value + "'");
     }
 
+
+
+//-----------------------------------Event Handlers for keyboard input----------------------------------------------------
 
     private void SetupKeyHandler()
     {
         VisualElement root = rootVisualElement;
-        root.Q<TextField>().Focus();
         root.RegisterCallback<KeyDownEvent>(OnKeyDown, TrickleDown.TrickleDown);
         root.RegisterCallback<KeyUpEvent>(OnKeyUp, TrickleDown.TrickleDown);
     }
@@ -177,6 +192,9 @@ public class SimpleCustomEditor : EditorWindow
         Debug.Log("KeyUp, keyCode = " + evt.keyCode + ", character = " + evt.character + ", modifiers = " + evt.modifiers);
     }
 
+
+
+//-----------------------------------Event Handlers for sliders-----------------------------------------------------------
 
     private void SetupSliderHandler() 
     {
@@ -195,7 +213,7 @@ public class SimpleCustomEditor : EditorWindow
         VisualElement root = rootVisualElement;
         SliderInt slider = evt.currentTarget as SliderInt;
 
-        Debug.Log("Value of '" + slider.name + "' set to '" + evt.newValue + "'");
+        Debug.Log("Value of '" + slider.name + "' set to '" + slider.value + "'");
     }
 
 
@@ -204,6 +222,28 @@ public class SimpleCustomEditor : EditorWindow
         VisualElement root = rootVisualElement;
         Slider slider = evt.currentTarget as Slider;
 
-        Debug.Log("Value of '" + slider.name + "' set to '" + evt.newValue + "'");
+        Debug.Log("Value of '" + slider.name + "' set to '" + slider.value + "'");
+    }
+
+
+
+//-----------------------------------Event Handlers for Vector2 fields----------------------------------------------------
+
+    private void SetupVector2Handler() 
+    {
+        VisualElement root = rootVisualElement;
+
+        Vector2Field field = root.Q<Vector2Field>("vector2values");
+
+        field.RegisterCallback<ChangeEvent<float>>(PrintVector2Message);
+    }
+
+
+    private void PrintVector2Message(ChangeEvent<float> evt) 
+    {
+        VisualElement root = rootVisualElement;
+        Vector2Field field = evt.currentTarget as Vector2Field;
+
+        Debug.Log("Value of '" + field.name + "' set to '" + field.value.x + "' and '" + field.value.y + "'");
     }
 }

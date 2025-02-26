@@ -1,8 +1,9 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:Label text="These controls were created in UI Builder" name="Hello" />
+    <engine:Label text="- The elements below were created in the UI Builder" name="Hello" />
     <engine:Button text="This is Button1" name="button1" style="width: 268px; height: 50px; background-color: rgb(255, 0, 4); -unity-text-align: middle-center; white-space: nowrap; text-overflow: clip;" />
-    <engine:Toggle label="Show the number?" name="toggle1" text="Yes" focusable="true" style="color: rgb(239, 255, 0);" />
+    <engine:Toggle label="Show the number?" name="toggle1" text="Yes" focusable="true" style="color: rgb(239, 255, 0); -unity-font-style: normal;" />
     <engine:TextField label="Some text to fill in" placeholder-text="Fill something in..." name="textfield1" />
-    <engine:SliderInt label="SliderInt" value="400" high-value="1000" direction="Horizontal" name="slider1" style="height: 28px;" />
-    <engine:Slider label="SliderFloat" value="200" high-value="1000" name="slider2" />
+    <engine:SliderInt label="SliderInt" value="400" high-value="1000" direction="Horizontal" name="slider1" style="height: 28px; -unity-font-style: bold-and-italic;" />
+    <engine:Slider label="SliderFloat" value="200" high-value="1000" name="slider2" style="-unity-font-style: normal;" />
+    <engine:Vector2Field label="Vector2 values" value="30,40" name="vector2values" />
 </engine:UXML>
