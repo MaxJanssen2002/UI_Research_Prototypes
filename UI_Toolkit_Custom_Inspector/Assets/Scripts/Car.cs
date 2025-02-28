@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-     public string m_Make = "Toyota";
-     public int m_YearBuilt = 1980;
-     public Color m_Color = Color.black;
+     public string carBrand = "Toyota";
+     public int yearBuilt = 1980;
+     public Color carColor = Color.black;
 }

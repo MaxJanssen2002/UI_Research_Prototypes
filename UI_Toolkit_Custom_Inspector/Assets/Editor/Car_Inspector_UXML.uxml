@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Label text="Hello world!" name="label1" />
+    <ui:TextField label="Brand of the car" placeholder-text="filler text" binding-path="carBrand" />
+</ui:UXML>
