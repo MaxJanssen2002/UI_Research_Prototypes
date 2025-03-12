@@ -178,11 +178,11 @@ public class LevelEditor : EditorWindow
         VisualElement root = rootVisualElement;
         Vector3Field field = root.Q<Vector3Field>("SpawnPosition");
 
-        field.RegisterCallback<ChangeEvent<float>>(ChangeSpherePosition);
+        field.RegisterCallback<ChangeEvent<float>>(ChangeSpawnPosition);
     }
 
 
-    private void ChangeSpherePosition(ChangeEvent<float> evt) 
+    private void ChangeSpawnPosition(ChangeEvent<float> evt) 
     {
         VisualElement root = rootVisualElement;
         Vector3Field field = evt.currentTarget as Vector3Field;
