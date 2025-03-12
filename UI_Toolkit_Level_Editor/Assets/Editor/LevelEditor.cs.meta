@@ -7,6 +7,8 @@ MonoImporter:
   - m_ViewDataDictionary: {instanceID: 0}
   - m_VisualTreeAsset: {fileID: 9197481963319205126, guid: e664242bb77d11d4a91b0e17e9fb9ac4, type: 3}
   - sphereInstance: {fileID: 2226830666130554827, guid: a3ab81399eda17145a0cb6ddbd97722d, type: 3}
+  - transparentSpherePrefab: {fileID: 5409547761215372478, guid: 90369bda120479140a82222b4dbeb6a9, type: 3}
+  - transparent: {fileID: 2100000, guid: 8bdd37c5204cfe04fb23f44758edc63a, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
