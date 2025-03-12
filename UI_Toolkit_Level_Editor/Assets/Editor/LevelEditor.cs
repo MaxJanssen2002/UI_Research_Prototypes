@@ -8,11 +8,10 @@ public class LevelEditor : EditorWindow
     private VisualTreeAsset m_VisualTreeAsset = default;
     
     public GameObject sphereInstance;
-    public GameObject transparentSpherePrefab;
-    private GameObject transparentSphereInstance;
+    public Material transparent;
+    private GameObject transparentObject;
     private GameObject selectedObject;
     private Vector3 spawnPosition;
-    public int counter;
 
     [MenuItem("Window/UI Toolkit/Level Editor")]
 
@@ -41,8 +40,9 @@ public class LevelEditor : EditorWindow
 
     void createTransparentSphere()
     {
-        transparentSphereInstance = Instantiate(transparentSpherePrefab, spawnPosition, Quaternion.identity);
-        transparentSphereInstance.name = "Transparent Sphere";
+        transparentObject = Instantiate(sphereInstance, spawnPosition, Quaternion.identity);
+        transparentObject.name = "Transparent Sphere";
+        transparentObject.GetComponent<Renderer>().material = transparent;
     }
 
 
@@ -74,7 +74,6 @@ public class LevelEditor : EditorWindow
 
 
     private void SpawnSphere() {
-        ++counter;
         GameObject newSphere = Instantiate(sphereInstance, spawnPosition, Quaternion.identity);
         newSphere.name = "Sphere";
         Renderer sphereRenderer = newSphere.GetComponent<Renderer>();
@@ -100,10 +99,8 @@ public class LevelEditor : EditorWindow
 
         spawnPosition = field.value;
 
-        
-
-        if (transparentSphereInstance != null) {
-            transparentSphereInstance.transform.position = spawnPosition;
+        if (transparentObject != null) {
+            transparentObject.transform.position = spawnPosition;
         }
     }
 }
