@@ -8,6 +8,8 @@ public class LevelEditor : EditorWindow
     private VisualTreeAsset m_VisualTreeAsset = default;
     
     public GameObject sphereInstance;
+    public GameObject cubeInstance;
+
     private Vector3 spawnPosition;
     public Material transparent;
     private GameObject transparentObject;
@@ -41,15 +43,15 @@ public class LevelEditor : EditorWindow
 
     public void OnDisable()
     {
-        if (transparentObject != null) {
-            DestroyTransparentObject();
-        }
+        DestroyTransparentObject();
     }
 
 
-    void DestroyTransparentObject()
+    private void DestroyTransparentObject()
     {
-        DestroyImmediate(transparentObject);
+        if (transparentObject != null) {
+            DestroyImmediate(transparentObject);
+        }
     }
 
 
@@ -78,6 +80,9 @@ public class LevelEditor : EditorWindow
         if (button.name == "SphereSpawner") {
             SpawnSphere();
         }
+        else if (button.name == "CubeSpawner") {
+            SpawnCube();
+        }
     }
 
 
@@ -90,7 +95,19 @@ public class LevelEditor : EditorWindow
         {
             GameObject newSphere = Instantiate(sphereInstance, spawnPosition, Quaternion.identity);
             newSphere.name = "Sphere";
-            Renderer sphereRenderer = newSphere.GetComponent<Renderer>();
+        }
+    }
+
+
+    private void SpawnCube() 
+    {
+        VisualElement root = rootVisualElement;
+        Toggle toggle = root.Q<Toggle>("CubeSpawnToggle");
+
+        if (toggle.value == true) 
+        {
+            GameObject newCube = Instantiate(cubeInstance, spawnPosition, Quaternion.identity);
+            newCube.name = "Cube";
         }
     }
 
@@ -99,33 +116,56 @@ public class LevelEditor : EditorWindow
 //-----------------------------------Event Handlers for Toggle fields-----------------------------------------------------
 
 
-    void SetupToggleHandler() 
+    private void SetupToggleHandler() 
     {
         VisualElement root = rootVisualElement;
-        Toggle toggle = root.Q<Toggle>("SphereSpawnToggle");
+        var toggles = root.Query<Toggle>();
 
-        toggle.RegisterCallback<ChangeEvent<bool>>(ChangeSphereToggle);
+        toggles.ForEach(RegisterToggle);
     }
 
 
-    void ChangeSphereToggle(ChangeEvent<bool> evt)
+    private void RegisterToggle(Toggle toggle)
+    {
+        toggle.RegisterCallback<ChangeEvent<bool>>(changeToggle);
+    }
+
+
+    private void changeToggle(ChangeEvent<bool> evt)
     {
         VisualElement root = rootVisualElement;
         Toggle toggle = evt.currentTarget as Toggle;
 
-        if (toggle.value) {
-            CreateTransparentSphere();
+        if (toggle.value)
+        {
+            if (toggle.name == "SphereSpawnToggle") {
+                DestroyTransparentObject();
+                CreateTransparentSphere();
+            }
+            if (toggle.name == "CubeSpawnToggle") {
+                DestroyTransparentObject();
+                CreateTransparentCube();
+            }
         }
-        else {
+        else 
+        {
             DestroyTransparentObject();
         }
     }
 
 
-    void CreateTransparentSphere()
+    private void CreateTransparentSphere()
     {
         transparentObject = Instantiate(sphereInstance, spawnPosition, Quaternion.identity);
         transparentObject.name = "Transparent Sphere";
+        transparentObject.GetComponent<Renderer>().material = transparent;
+    }
+
+
+    private void CreateTransparentCube()
+    {
+        transparentObject = Instantiate(cubeInstance, spawnPosition, Quaternion.identity);
+        transparentObject.name = "Transparent Cube";
         transparentObject.GetComponent<Renderer>().material = transparent;
     }
 
@@ -136,7 +176,7 @@ public class LevelEditor : EditorWindow
     private void SetupVector3Handler() 
     {
         VisualElement root = rootVisualElement;
-        Vector3Field field = root.Q<Vector3Field>("SpherePosition");
+        Vector3Field field = root.Q<Vector3Field>("SpawnPosition");
 
         field.RegisterCallback<ChangeEvent<float>>(ChangeSpherePosition);
     }
