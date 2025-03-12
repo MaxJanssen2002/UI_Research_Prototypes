@@ -8,13 +8,14 @@ public class LevelEditor : EditorWindow
     private VisualTreeAsset m_VisualTreeAsset = default;
     
     public GameObject sphereInstance;
+    private Vector3 spawnPosition;
     public Material transparent;
     private GameObject transparentObject;
     private GameObject selectedObject;
-    private Vector3 spawnPosition;
+
+
 
     [MenuItem("Window/UI Toolkit/Level Editor")]
-
 
     public static void ShowWindow()
     {
@@ -30,20 +31,27 @@ public class LevelEditor : EditorWindow
         root.Add(labelFromUXML);
 
         spawnPosition = new Vector3(0.0f, 0.0f, 0.0f);
-        createTransparentSphere();
 
         //Call the event handlers
         SetupButtonHandler();
+        SetupToggleHandler();
         SetupVector3Handler();
     }
 
 
-    void createTransparentSphere()
+    public void OnDisable()
     {
-        transparentObject = Instantiate(sphereInstance, spawnPosition, Quaternion.identity);
-        transparentObject.name = "Transparent Sphere";
-        transparentObject.GetComponent<Renderer>().material = transparent;
+        if (transparentObject != null) {
+            DestroyTransparentObject();
+        }
     }
+
+
+    void DestroyTransparentObject()
+    {
+        DestroyImmediate(transparentObject);
+    }
+
 
 
 //-----------------------------------Event Handlers for button clicks-----------------------------------------------------
@@ -73,11 +81,54 @@ public class LevelEditor : EditorWindow
     }
 
 
-    private void SpawnSphere() {
-        GameObject newSphere = Instantiate(sphereInstance, spawnPosition, Quaternion.identity);
-        newSphere.name = "Sphere";
-        Renderer sphereRenderer = newSphere.GetComponent<Renderer>();
+    private void SpawnSphere() 
+    {
+        VisualElement root = rootVisualElement;
+        Toggle toggle = root.Q<Toggle>("SphereSpawnToggle");
+
+        if (toggle.value == true) 
+        {
+            GameObject newSphere = Instantiate(sphereInstance, spawnPosition, Quaternion.identity);
+            newSphere.name = "Sphere";
+            Renderer sphereRenderer = newSphere.GetComponent<Renderer>();
+        }
     }
+
+
+
+//-----------------------------------Event Handlers for Toggle fields-----------------------------------------------------
+
+
+    void SetupToggleHandler() 
+    {
+        VisualElement root = rootVisualElement;
+        Toggle toggle = root.Q<Toggle>("SphereSpawnToggle");
+
+        toggle.RegisterCallback<ChangeEvent<bool>>(ChangeSphereToggle);
+    }
+
+
+    void ChangeSphereToggle(ChangeEvent<bool> evt)
+    {
+        VisualElement root = rootVisualElement;
+        Toggle toggle = evt.currentTarget as Toggle;
+
+        if (toggle.value) {
+            CreateTransparentSphere();
+        }
+        else {
+            DestroyTransparentObject();
+        }
+    }
+
+
+    void CreateTransparentSphere()
+    {
+        transparentObject = Instantiate(sphereInstance, spawnPosition, Quaternion.identity);
+        transparentObject.name = "Transparent Sphere";
+        transparentObject.GetComponent<Renderer>().material = transparent;
+    }
+
 
 
 //-----------------------------------Event Handlers for Vector3 fields----------------------------------------------------
@@ -85,7 +136,6 @@ public class LevelEditor : EditorWindow
     private void SetupVector3Handler() 
     {
         VisualElement root = rootVisualElement;
-
         Vector3Field field = root.Q<Vector3Field>("SpherePosition");
 
         field.RegisterCallback<ChangeEvent<float>>(ChangeSpherePosition);
