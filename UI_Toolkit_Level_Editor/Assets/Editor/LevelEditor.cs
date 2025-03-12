@@ -6,15 +6,16 @@ public class LevelEditor : EditorWindow
 {
     [SerializeField]
     private VisualTreeAsset m_VisualTreeAsset = default;
-
+    
+    public GameObject sphereInstance;
 
     [MenuItem("Window/UI Toolkit/Level Editor")]
 
 
-    public static void ShowExample()
+    public static void ShowWindow()
     {
         LevelEditor window = GetWindow<LevelEditor>();
-        window.titleContent = new GUIContent("Mijn level editor");
+        window.titleContent = new GUIContent("Mijn level editors");
     }
 
 
@@ -50,16 +51,25 @@ public class LevelEditor : EditorWindow
 
     private void RegisterButton(Button button)
     {
-        button.RegisterCallback<ClickEvent>(PrintClickMessage);
+        button.RegisterCallback<ClickEvent>(HandleButton);
     }
 
-    private void PrintClickMessage(ClickEvent evt)
+    private void HandleButton(ClickEvent evt)
     {
         VisualElement root = rootVisualElement;
 
         Button button = evt.currentTarget as Button;
 
         Debug.Log("Button with name '" + button.name + "' was clicked!");
+
+        if (button.name == "SphereSpawner") {
+            SpawnSphere();
+        }
+    }
+
+
+    private void SpawnSphere() {
+        Instantiate(sphereInstance, new Vector3(0, 1, 0), Quaternion.identity);
     }
 
 
