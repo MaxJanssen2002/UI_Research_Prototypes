@@ -1,8 +1,8 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=9c2f2c6e2ec17ff46940f531cf5a70c4&amp;type=3#MainMenuStyle" />
     <engine:VisualElement name="container" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Japanese%20landscape/Sprites/Backgrounds/ezgif-13accf8423b9b4.jpg?fileID=-6937505204423265277&amp;guid=ca1b78554d70a3d4e9c1e808af957cf2&amp;type=3#ezgif-13accf8423b9b4_0&quot;);">
-        <engine:Label text="Main Menu" name="header" class="header" style="-unity-font-definition: url(&quot;project://database/Assets/Fonstars-4Bo0p.otf?fileID=12800000&amp;guid=f5c1aa38cb9e92a40a028112d359978f&amp;type=3#Fonstars-4Bo0p&quot;);" />
-        <engine:Button text="Start&#10;" class="button" style="margin-top: 50px; margin-right: 50px; margin-bottom: 50px; margin-left: 50px; white-space: pre-wrap;" />
-        <engine:Button text="Quit&#10;" class="button" />
+        <engine:Label text="Main Menu" name="header" class="header" style="-unity-font-definition: url(&quot;project://database/Assets/Fonstars-4Bo0p.otf?fileID=12800000&amp;guid=f5c1aa38cb9e92a40a028112d359978f&amp;type=3#Fonstars-4Bo0p&quot;); align-content: flex-end; align-self: center; font-size: 80px; padding-top: 250px;" />
+        <engine:Button text="Play&#10;" name="StartGameButton" class="button" style="margin-top: 50px; margin-right: 50px; margin-bottom: 50px; margin-left: 50px; white-space: pre-wrap;" />
+        <engine:Button text="Quit&#10;" name="QuitButton" class="button" />
     </engine:VisualElement>
 </engine:UXML>
