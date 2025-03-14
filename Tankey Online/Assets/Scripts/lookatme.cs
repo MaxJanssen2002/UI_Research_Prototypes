@@ -10,7 +10,7 @@ public class lookatme : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        DisableUI();
     }
 
     void HitByRay () {
