@@ -138,7 +138,6 @@ public class SimpleCustomEditor : EditorWindow
 
     private void PrintTextMessage(ChangeEvent<string> evt)
     {
-        VisualElement root = rootVisualElement;
         TextField field = evt.currentTarget as TextField;
 
         Debug.Log("Value of '" + field.name + "' set to '" + evt.newValue + "'");
