@@ -4,8 +4,4 @@
     <ui:Toggle label="Cube spawner enabled" name="CubeSpawnToggle" />
     <ui:Button text="Spawn Cube" name="CubeSpawner" style="background-color: rgb(255, 255, 0); color: rgb(0, 0, 0);" />
     <ui:Vector3Field label="Position to spawn object" name="SpawnPosition" enabled="true" style="font-size: 14px;" />
-    <ui:ToggleButtonGroup label="Shape to spawn" tabindex="0" usage-hints="None" is-multiple-selection="false" value="00" allow-empty-selection="true" name="SpawnEnablers">
-        <ui:Button text="Sphere" name="SphereSpawnEnabler" />
-        <ui:Button text="Cube" name="CubeSpawnEnabler" />
-    </ui:ToggleButtonGroup>
 </ui:UXML>

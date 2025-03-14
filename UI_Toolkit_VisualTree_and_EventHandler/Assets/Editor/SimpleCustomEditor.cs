@@ -64,24 +64,10 @@ public class SimpleCustomEditor : EditorWindow
         toggle.label = "Show the number?";
         root.Add(toggle);
 
-        // Make my own VisualElement (in this case a red block with text and a textfield in it)
-        VisualElement myElement = new VisualElement();
-        myElement.Add(new Label("A label in a visualElement"));
-        myElement.Add(new Label("A second label in the same visualElement"));
-        TextField myTextfield = new TextField();
-        myTextfield.name = "textfield2";
-        myTextfield.label = "Insert something";
-        myElement.Add(myTextfield);
-        myElement.style.backgroundColor = Color.red;
-        myElement.style.width = 300;
-        myElement.style.height = 150;
-        root.Add(myElement);
-
 
         //Call the event handlers
         SetupButtonHandler();
         SetupTextHandler();
-        SetupKeyHandler();
         SetupSliderHandler();
         SetupVector2Handler();
     }
@@ -140,7 +126,7 @@ public class SimpleCustomEditor : EditorWindow
         // Option 1: Make a lambda function for your event
         // field.RegisterCallback<ChangeEvent<string>>((evt) =>
         // {
-        //     Debug.Log("Value of '" + field.name + "' set from '" + evt.oldValue + "' to '" + evt.newValue + "'");
+        //     Debug.Log("Value of '" + field.name + "' set to '" + evt.newValue + "'");
         // });
 
         // Option 2: Call a function for your event
@@ -153,20 +139,9 @@ public class SimpleCustomEditor : EditorWindow
     private void PrintTextMessage(ChangeEvent<string> evt)
     {
         VisualElement root = rootVisualElement;
-
-
-        // Option 1: Ask for the name of the textfield
-        //TextField field = root.Q<TextField>("textfield1");
-
-        // Option 2: Ask for the target of the event (which is also the textfield)
         TextField field = evt.currentTarget as TextField;
 
-
-        // Option 1: Log the new value given by the event
-        //Debug.Log("Value of '" + field.name + "' set to '" + evt.newValue + "'");
-
-        // Option 2: Log the current value of the variable you just changed
-        Debug.Log("Value of '" + field.name + "' set to '" + field.value + "'");
+        Debug.Log("Value of '" + field.name + "' set to '" + evt.newValue + "'");
     }
 
 
