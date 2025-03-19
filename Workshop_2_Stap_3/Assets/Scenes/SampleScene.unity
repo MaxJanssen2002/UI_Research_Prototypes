@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08068bdf2d667f546bf08599f049d977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToThrow: {fileID: 6135227657685581768, guid: eedd1be61af6acc428f8ad010e8b9f9e, type: 3}
   movementSpeed: 0
   rotationSpeed: 0
 --- !u!136 &48001663
