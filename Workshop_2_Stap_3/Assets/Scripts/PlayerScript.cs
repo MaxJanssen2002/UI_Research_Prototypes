@@ -6,6 +6,9 @@ public class PlayerScript : MonoBehaviour
     public GameObject objectToThrow;
     public float movementSpeed;
     public float rotationSpeed;
+    private float objectSpawnDistance;
+    private float throwingForceForward;
+    private float throwingForceUp;
 
     
     private void Start()
@@ -13,6 +16,9 @@ public class PlayerScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         movementSpeed = 2.0f;
         rotationSpeed = 120.0f;
+        objectSpawnDistance = 0.5f;
+        throwingForceForward = 200.0f;
+        throwingForceUp = 50.0f;
     }
     
     private void FixedUpdate()
@@ -38,7 +44,13 @@ public class PlayerScript : MonoBehaviour
 
 
     private void throwObject() {
-        GameObject newObject = Instantiate(objectToThrow, transform.position + transform.forward * 0.5f, Quaternion.identity);
-        newObject.name = "Sphere";
+        GameObject newObject = Instantiate(objectToThrow, transform.position + transform.forward * objectSpawnDistance, Quaternion.identity);
+        newObject.name = "Metal_Ball";
+
+        Rigidbody thrownObjectRb = newObject.GetComponent<Rigidbody>();
+        if (thrownObjectRb) {
+            thrownObjectRb.AddForce(transform.forward * throwingForceForward, ForceMode.Force);
+            thrownObjectRb.AddForce(transform.up * throwingForceUp, ForceMode.Force);
+        }
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -9014460288080893340}
   m_Layer: 6
   m_Name: Metal_Ball
-  m_TagString: Untagged
+  m_TagString: ThrownObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,7 +118,7 @@ Rigidbody:
   m_GameObject: {fileID: 6135227657685581768}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.4
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}

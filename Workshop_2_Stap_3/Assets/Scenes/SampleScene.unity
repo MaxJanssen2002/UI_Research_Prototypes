@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 48001663}
   - component: {fileID: 48001662}
   - component: {fileID: 48001667}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -667,7 +667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 617896773054655423, guid: 0d2c21a462f0ee34e95ac290545f736e, type: 3}
       propertyPath: m_TagString
-      value: Target
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2892658781563657092, guid: 0d2c21a462f0ee34e95ac290545f736e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -856,7 +856,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 617896773054655423, guid: 0d2c21a462f0ee34e95ac290545f736e, type: 3}
       propertyPath: m_TagString
-      value: Target
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2892658781563657092, guid: 0d2c21a462f0ee34e95ac290545f736e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1026,7 +1026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 617896773054655423, guid: 0d2c21a462f0ee34e95ac290545f736e, type: 3}
       propertyPath: m_TagString
-      value: Target
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2892658781563657092, guid: 0d2c21a462f0ee34e95ac290545f736e, type: 3}
       propertyPath: m_LocalPosition.x
