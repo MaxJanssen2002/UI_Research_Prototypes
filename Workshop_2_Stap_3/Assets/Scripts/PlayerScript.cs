@@ -17,8 +17,8 @@ public class PlayerScript : MonoBehaviour
         movementSpeed = 2.0f;
         rotationSpeed = 120.0f;
         objectSpawnDistance = 0.5f;
-        throwingForceForward = 200.0f;
-        throwingForceUp = 50.0f;
+        throwingForceForward = 300.0f;
+        throwingForceUp = 150.0f;
     }
     
     private void FixedUpdate()
