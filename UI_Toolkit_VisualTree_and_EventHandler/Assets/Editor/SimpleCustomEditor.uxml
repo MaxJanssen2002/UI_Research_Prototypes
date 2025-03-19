@@ -6,4 +6,5 @@
     <engine:SliderInt label="SliderInt" value="400" high-value="1000" direction="Horizontal" name="slider1" style="height: 28px; -unity-font-style: bold-and-italic;" />
     <engine:Slider label="SliderFloat" value="200" high-value="1000" name="slider2" style="-unity-font-style: normal;" />
     <engine:Vector2Field label="Vector2 values" value="30,40" name="vector2values" />
+    <engine:Label text="Demo van UI Toolkit" />
 </engine:UXML>
