@@ -6,12 +6,19 @@ public class PlayerScript : MonoBehaviour
     public float movementSpeed;
     public float rotationSpeed;
 
+    private float rayDistance;
+    private float maxRayDistance;
+    private Ray shootingRay;
+    private RaycastHit raycastHit;
+
     
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         movementSpeed = 2.0f;
         rotationSpeed = 120.0f;
+        maxRayDistance = 100.0f;
+        rayDistance = maxRayDistance;
     }
     
     private void FixedUpdate()
@@ -29,6 +36,23 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
             Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, rotationSpeed, 0) * Time.deltaTime);
             rb.MoveRotation(transform.rotation * deltaRotation);
+        }
+        if (Input.GetKeyDown(KeyCode.E)) {
+            InteractWithCustomer();
+        }
+    }
+
+
+    private void InteractWithCustomer() {
+        shootingRay = new Ray (transform.position, transform.TransformDirection(Vector3.forward));
+        if (Physics.Raycast(shootingRay.origin, transform.TransformDirection(Vector3.forward), out raycastHit, rayDistance)) {
+            rayDistance = raycastHit.distance;
+            if (raycastHit.transform.gameObject.tag == "Customer") {
+                Debug.Log("Interacting with customer");
+            }
+        }
+        else {
+            rayDistance = maxRayDistance;
         }
     }
 }
