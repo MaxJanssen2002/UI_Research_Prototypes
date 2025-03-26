@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8221979854604498290}
   m_Layer: 0
   m_Name: CubeMetUI
-  m_TagString: Paintable
+  m_TagString: PickUpAble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -248,3 +248,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2e965c3a5aa1e47b51949828501186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fpsCam: {fileID: 0}

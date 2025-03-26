@@ -14,7 +14,6 @@ public class lookatme : MonoBehaviour
     }
 
     void HitByRay () {
-        Debug.Log ("I was hit by a Ray");
         Canvas objectUI = GetComponentInChildren<Canvas>();
 
         if (objectUI != null){
@@ -26,8 +25,7 @@ public class lookatme : MonoBehaviour
     }
 
     void DisableUI(){
-        Debug.Log ("Disable UI");
-        Canvas objectUI = GetComponentInChildren<Canvas>();
+            Canvas objectUI = GetComponentInChildren<Canvas>();
 
         if (objectUI != null){
             objectUI.gameObject.SetActive(false);

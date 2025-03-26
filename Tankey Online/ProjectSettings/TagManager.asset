@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Paintable
   - Unpaintable
+  - PickUpAble
   layers:
   - Default
   - TransparentFX
