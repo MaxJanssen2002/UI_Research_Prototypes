@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class playerInventory : MonoBehaviour
 {
-    public List<GameObject> items = new List<GameObject>(); // Store picked objects
+    public List<GameObject> items = new List<GameObject>();
     public Transform inventorySlots;
-    public GameObject itemSlotPrefab; // Prefab for UI slot
+    public GameObject itemSlotPrefab;
 
     public int maxInventorySize = 20;
 
