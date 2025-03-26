@@ -182,6 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6634889992050659108}
   - component: {fileID: 4091475541004941900}
+  - component: {fileID: 56859406120966352}
   m_Layer: 0
   m_Name: Villager
   m_TagString: Customer
@@ -246,6 +247,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.2, y: 0.7, z: 0.18}
   m_Center: {x: 0, y: 0.35, z: 0}
+--- !u!114 &56859406120966352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478013151243395268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68b77faa8131dc0439138c56282ed32e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  role: 0
+  price: 5
 --- !u!1 &2223455748191548855
 GameObject:
   m_ObjectHideFlags: 0
