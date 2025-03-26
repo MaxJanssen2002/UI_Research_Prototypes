@@ -7,24 +7,22 @@ public class InventoryManager : MonoBehaviour
     private bool menuActivated = false;
     private Keyboard keyboard = Keyboard.current;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         InventoryMenu.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(keyboard.eKey.isPressed && menuActivated){
+        if(keyboard.eKey.wasReleasedThisFrame && menuActivated){
             Time.timeScale = 1;
             Debug.Log("btn pressed menu turned off");
             InventoryMenu.SetActive(false);
             menuActivated = false;
         }    
-        else if(keyboard.eKey.isPressed && !menuActivated){
+        else if(keyboard.eKey.wasPressedThisFrame && !menuActivated){
             Time.timeScale = 0;
-            Debug.Log("btn pressed menu turned on");
+            Debug.Log("btn released menu turned on");
             InventoryMenu.SetActive(true);
             menuActivated = true;
         }
