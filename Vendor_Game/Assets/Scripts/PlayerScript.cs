@@ -1,18 +1,26 @@
 using UnityEngine;
 using UnityEditor;
+using TMPro;
+
+
 
 public class PlayerScript : MonoBehaviour
 {
     private Rigidbody rb;
     private WorldInfo worldInfo;
-    public float movementSpeed;
-    public float rotationSpeed;
+
+    [SerializeField]
+    public TMP_Text emeraldCountText;
+
+    private float movementSpeed;
+    private float rotationSpeed;
 
     private float targetCustomerDistance;
     private float rayDistance;
     private float maxRayDistance;
     private Ray shootingRay;
     private RaycastHit hit;
+    private int emeraldCount;
 
     
     private void Start()
@@ -24,6 +32,7 @@ public class PlayerScript : MonoBehaviour
         rotationSpeed = 120.0f;
         maxRayDistance = 100.0f;
         rayDistance = maxRayDistance;
+        emeraldCount = 10;
     }
     
     private void FixedUpdate()
@@ -45,6 +54,11 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E)) {
             InteractWithCustomer();
         }
+    }
+
+
+    private void Update() {
+        emeraldCountText.text = emeraldCount.ToString();
     }
 
 
