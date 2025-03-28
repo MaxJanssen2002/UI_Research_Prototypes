@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class playerInventory : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class playerInventory : MonoBehaviour
 
     void Start()
     {
+        inventoryData = AssetDatabase.LoadAssetAtPath<InventoryDataScriptableObject>("Assets/InventoryData.asset");
+        if (!inventoryData) {
+            inventoryData = ScriptableObject.CreateInstance<InventoryDataScriptableObject>();
+            AssetDatabase.CreateAsset(inventoryData, "Assets/InventoryData.asset");
+        }
         RefreshUI();
     }
 
