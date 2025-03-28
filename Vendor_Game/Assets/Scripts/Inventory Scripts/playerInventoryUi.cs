@@ -3,30 +3,37 @@ using UnityEngine;
 
 public class playerInventory : MonoBehaviour
 {
-    public List<GameObject> items = new List<GameObject>();
+    public InventoryDataScriptableObject inventoryData;
     public Transform inventorySlots;
     public GameObject itemSlotPrefab;
 
-    public int maxInventorySize = 20;
+    void Start()
+    {
+        RefreshUI();
+    }
 
     public void AddItem(GameObject item)
     {
-        if (items.Count <= maxInventorySize)
-        {
-            Debug.Log("itemAdded");
-            items.Add(item);
-            item.SetActive(false);
-            DisplayItemInUI(item);
-        }
-        else
-        {
-            Debug.Log("Inventory is full!");
-        }
+        inventoryData.AddItem(item);
+        RefreshUI();
     }
 
-    void DisplayItemInUI(GameObject item)
+    public void RemoveItem(GameObject item)
     {
-        if (items.Count <= maxInventorySize)
+        inventoryData.RemoveItem(item);
+        RefreshUI();
+    }
+
+    void RefreshUI()
+    {
+        // Clear old UI elements
+        foreach (Transform child in inventorySlots)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Display updated inventory
+        foreach (GameObject item in inventoryData.items)
         {
             GameObject uiSlot = Instantiate(itemSlotPrefab, inventorySlots);
             ItemSlot slotComponent = uiSlot.GetComponent<ItemSlot>();
@@ -39,5 +46,4 @@ public class playerInventory : MonoBehaviour
                 Debug.LogError("ItemSlot component not found on the itemSlotPrefab!");
             }
         }
-    }
-}
+    }}
