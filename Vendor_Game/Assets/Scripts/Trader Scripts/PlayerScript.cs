@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using TMPro;
+using System.Collections.Generic;
 
 
 
@@ -20,8 +21,10 @@ public class PlayerScript : MonoBehaviour
     private float maxRayDistance;
     private Ray shootingRay;
     private RaycastHit hit;
-    private int emeraldCount;
+    public int emeraldCount;
+    public TradeUI tradeUI;
 
+    public List<GameObject> Inventory = new List<GameObject>();
     
     private void Start()
     {
@@ -75,14 +78,31 @@ public class PlayerScript : MonoBehaviour
         shootingRay = new Ray (transform.position, transform.TransformDirection(Vector3.forward));
         if (Physics.Raycast(shootingRay.origin, transform.TransformDirection(Vector3.forward), out hit, rayDistance)) {
             rayDistance = hit.distance;
+            
             if (hit.transform.gameObject.tag == "Customer") {
-                if (Vector3.Distance(transform.position, hit.transform.position) <= targetCustomerDistance) {
-                    Debug.Log("Interacting with customer");
+
+                CustomerScript customer = hit.transform.GetComponent<CustomerScript>();
+
+                if (customer != null && customer.role == CustomerScript.Role.Seller && 
+                    Vector3.Distance(transform.position, hit.transform.position) <= targetCustomerDistance)
+                {
+                    Debug.Log($"Opening trade with seller offering {customer.GetItemForSale().name} for {customer.GetPrice()} emeralds.");
+                    tradeUI.OpenTrade(customer,this); // Pass the specific seller to the UI
                 }
             }
         }
         else {
             rayDistance = maxRayDistance;
         }
+    }
+
+    public bool CanAfford(int price)
+    {
+        return emeraldCount >= price;
+    }
+
+    public void SpendEmeralds(int amount)
+    {
+        emeraldCount -= amount;
     }
 }

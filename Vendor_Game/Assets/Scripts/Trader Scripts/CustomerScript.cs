@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
 
 public class CustomerScript : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class CustomerScript : MonoBehaviour
     public Role role;
     public int price;
     public float rotationSpeed;
-
+    public GameObject itemForSale;
     private GameObject player;
     private WorldInfo worldInfo;
     private float targetPlayerDistance;
@@ -56,5 +57,14 @@ public class CustomerScript : MonoBehaviour
             targetRotation = Quaternion.LookRotation(currentDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
+    }
+    public GameObject GetItemForSale()
+    {
+        return itemForSale;
+    }
+
+    public int GetPrice()
+    {
+        return price;
     }
 }
