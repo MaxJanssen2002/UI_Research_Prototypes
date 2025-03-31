@@ -54,7 +54,7 @@ public class PlayerScript : MonoBehaviour
             Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, rotationSpeed, 0) * Time.deltaTime);
             rb.MoveRotation(transform.rotation * deltaRotation);
         }
-        if (Input.GetKeyDown(KeyCode.E)) {
+        if (Input.GetKeyDown(KeyCode.X)) {
             InteractWithCustomer();
         }
     }

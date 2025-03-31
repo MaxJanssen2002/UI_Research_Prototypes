@@ -43,10 +43,9 @@ public class ItemPlaceHolder : MonoBehaviour
     {
         if (item != null)
         {
-            item.transform.position = transform.position;
-            item.transform.rotation = transform.rotation;
-            item.SetActive(true);
-            heldItem = item;
+            GameObject newItem = Instantiate(item, transform.position, transform.rotation);
+            newItem.SetActive(true);
+            heldItem = newItem;
             _closetScript.AddToCount();
         }
     }

@@ -395,7 +395,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5533474319693245807}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6dd48f226dea06468b50044d6a0f58d, type: 3}
+  m_Script: {fileID: 11500000, guid: eab44aeb2daecc74987a162ec9a71aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryMenu: {fileID: 419245914087592923}

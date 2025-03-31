@@ -12,12 +12,26 @@ public class TradeUI : MonoBehaviour
     private CustomerScript currentSeller;
     private PlayerScript player;
 
+    private PlayerInventory playerInventory;
+
+    private void Start(){
+        if (playerInventory == null)
+        {
+            playerInventory = FindFirstObjectByType<PlayerInventory>();
+            if (playerInventory == null)
+            {
+                Debug.LogError("PlayerInventory component not found!");
+            }
+        }
+
+        closeButton.onClick.AddListener(() => gameObject.SetActive(false));
+        gameObject.SetActive(false);
+    }
+
     public void OpenTrade(CustomerScript seller, PlayerScript playerScript)
     {
         currentSeller = seller;
         player = playerScript;
-
-        // Update UI dynamically based on seller and player data
         UpdateShop();
         UpdateEmeraldDisplay();
         currentSeller.PlayIdleSound();
@@ -53,8 +67,7 @@ public class TradeUI : MonoBehaviour
         if (player.CanAfford(price))
         {
             player.SpendEmeralds(price); 
-            player.Inventory.Add( itemPrefab);
-            UpdateEmeraldDisplay();
+            playerInventory.AddItem( itemPrefab);
             Debug.Log($"Bought {itemPrefab.name} for {price} emeralds.");
             currentSeller.PlayAcceptSound();
         }
@@ -62,16 +75,5 @@ public class TradeUI : MonoBehaviour
         {
             Debug.Log("Not enough emeralds!");
         }
-    }
-
-    void UpdateEmeraldDisplay()
-    {
-    
-    }
-
-    void Start()
-    {
-        closeButton.onClick.AddListener(() => gameObject.SetActive(false));
-        gameObject.SetActive(false);
     }
 }

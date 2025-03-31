@@ -13,7 +13,7 @@ public class InventoryDataScriptableObject : ScriptableObject
         {
             Debug.Log("Item Added: " + item.name);
             items.Add(item);
-            item.SetActive(false); // Hide the item in the world
+            item.SetActive(false); 
         }
         else
         {

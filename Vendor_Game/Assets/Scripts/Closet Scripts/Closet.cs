@@ -19,18 +19,18 @@ public class Closet : MonoBehaviour
             }
         }
         
-        countText.text = "Items: " + _count;
+        countText.text = _count.ToString();
     }
     
     public void AddToCount()
     {
         _count++;
-        countText.text = "Items: " + _count;
+        countText.text = _count.ToString();
     }
     
     public void RemoveFromCount()
     {
         _count--;
-        countText.text = "Items: " + _count;
+        countText.text = _count.ToString();
     }
 }
