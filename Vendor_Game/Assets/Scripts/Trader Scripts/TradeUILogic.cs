@@ -33,7 +33,7 @@ public class TradeUI : MonoBehaviour
         currentSeller = seller;
         player = playerScript;
         UpdateShop();
-        UpdateEmeraldDisplay();
+        //UpdateEmeraldDisplay();
         currentSeller.PlayIdleSound();
 
         // Show UI
