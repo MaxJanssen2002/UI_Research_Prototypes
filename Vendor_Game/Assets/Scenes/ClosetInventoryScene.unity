@@ -367,7 +367,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.25, y: 0}
-  m_SizeDelta: {x: 0.3, y: 0.3}
+  m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &282184644
 MonoBehaviour:
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 073bbd76799964c43bc3e795cfa5b443, type: 3}
+  m_Texture: {fileID: 2800000, guid: 286f7f15ab53a4f44808dd8e118e7ae9, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -783,7 +783,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1115,7 +1115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7fb41f82ab8a1a459f35492be4cefa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countText: {fileID: 0}
+  countText: {fileID: 453589100}
 --- !u!1001 &738487553
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1460,15 +1460,15 @@ PrefabInstance:
     - target: {fileID: 8404987252589814135, guid: 6b33f85ef2081eb4a8bbd3cb0312bc90, type: 3}
       propertyPath: 'Inventory.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4893033341989862893, guid: 2749d5e14b399554a82ff632a473bffa, type: 3}
     - target: {fileID: 8404987252589814135, guid: 6b33f85ef2081eb4a8bbd3cb0312bc90, type: 3}
       propertyPath: 'Inventory.Array.data[1]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8651683002021850004, guid: 9e52ebcc78323c840b68a554ac7ed566, type: 3}
     - target: {fileID: 8404987252589814135, guid: 6b33f85ef2081eb4a8bbd3cb0312bc90, type: 3}
       propertyPath: 'Inventory.Array.data[2]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4098448393604251442, guid: 547aacb1fc0e0d0408bd1c575d146413, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
