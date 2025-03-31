@@ -3,14 +3,18 @@ using UnityEngine;
 
 public class ItemPlaceHolder : MonoBehaviour
 {
-    public GameObject item = null;
+    public GameObject item;
     public GameObject heldItem;
     
     private GameObject _closet;
     private Closet _closetScript;
+    private GameObject _player;
+    private PlayerScript _playerScript;
     
     private void Start()
     {
+        _player = GameObject.FindWithTag("Player");
+        _playerScript = _player.GetComponent<PlayerScript>();
         _closet = transform.parent.gameObject;
         _closetScript = _closet.GetComponent<Closet>();
     }
@@ -25,7 +29,7 @@ public class ItemPlaceHolder : MonoBehaviour
         }
         else
         {
-            PlaceItem(item);
+            PlaceItem(_playerScript.Inventory[0]);
         }
     }
 
