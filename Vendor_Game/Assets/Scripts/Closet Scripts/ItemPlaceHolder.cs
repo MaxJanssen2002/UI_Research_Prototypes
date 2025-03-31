@@ -3,14 +3,13 @@ using UnityEngine;
 
 public class ItemPlaceHolder : MonoBehaviour
 {
-    public GameObject item;
     public GameObject heldItem;
-    
+
     private GameObject _closet;
     private Closet _closetScript;
     private GameObject _player;
     private PlayerScript _playerScript;
-    
+
     private void Start()
     {
         _player = GameObject.FindWithTag("Player");
@@ -21,15 +20,22 @@ public class ItemPlaceHolder : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("Interacted");
-
         if (heldItem != null)
         {
+            _playerScript.Inventory.Add(heldItem);
             RemoveItem();
         }
         else
         {
-            PlaceItem(_playerScript.Inventory[0]);
+            for (int i = 0; i < _playerScript.Inventory.Count; i++)
+            {
+                if (_playerScript.Inventory[i] != null)
+                {
+                    PlaceItem(_playerScript.Inventory[i]);
+                    _playerScript.Inventory.RemoveAt(i);
+                    break;
+                }
+            }
         }
     }
 
@@ -37,15 +43,21 @@ public class ItemPlaceHolder : MonoBehaviour
     {
         if (item != null)
         {
-            heldItem = Instantiate(item, transform.position, transform.rotation);
+            item.transform.position = transform.position;
+            item.transform.rotation = transform.rotation;
+            item.SetActive(true);
+            heldItem = item;
             _closetScript.AddToCount();
         }
     }
 
     private void RemoveItem()
     {
-            Destroy(heldItem);
+        if (heldItem != null)
+        {
+            heldItem.SetActive(false);
             heldItem = null;
             _closetScript.RemoveFromCount();
+        }
     }
 }
