@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class playerInventory : MonoBehaviour
+public class PlayerInventory : MonoBehaviour
 {
     public InventoryDataScriptableObject inventoryData;
     public Transform inventorySlots;
@@ -32,13 +32,11 @@ public class playerInventory : MonoBehaviour
 
     void RefreshUI()
     {
-        // Clear old UI elements
         foreach (Transform child in inventorySlots)
         {
             Destroy(child.gameObject);
         }
 
-        // Display updated inventory
         foreach (GameObject item in inventoryData.items)
         {
             GameObject uiSlot = Instantiate(itemSlotPrefab, inventorySlots);

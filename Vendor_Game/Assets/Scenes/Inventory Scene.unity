@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b306333eb061e409c0a9a39e19fd1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryData: {fileID: 0}
+  inventoryData: {fileID: 11400000, guid: 65dc6ea62f4a92649b5aa2d27ce0de33, type: 2}
   inventorySlots: {fileID: 1524818259}
   itemSlotPrefab: {fileID: 8722109988614078335, guid: 130684e2afa8b0243ac05246ce676433, type: 3}
 --- !u!1 &644331063
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayDistance: 100
-  playerInventory: {fileID: 0}
+  playerInventory: {fileID: 253786663}
   fpsCam: {fileID: 644331065}
 --- !u!1 &653562061
 GameObject:

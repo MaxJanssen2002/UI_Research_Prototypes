@@ -3,13 +3,16 @@ using UnityEngine.InputSystem;
 
 public class CameraRayCast : MonoBehaviour
 {
-    public float rayDistance = 100f; // Maximum ray distance
+    public float rayDistance = 100f;
     private Keyboard keyboard = Keyboard.current;
-
-    public playerInventory playerInventory;
-
-
     public Camera fpsCam;
+
+    private PlayerInventory playerInventory;
+
+    void Start()
+    {
+        playerInventory = GetComponentInParent<PlayerInventory>();
+    }
 
     void Update()
     {
@@ -25,7 +28,6 @@ public class CameraRayCast : MonoBehaviour
             if(keyboard.fKey.isPressed){
                 GameObject PickUpObject = hit.collider.gameObject;
                 if(PickUpObject.tag.Equals("PickUpAble")){
-                    
                     Debug.Log("PickUp: " + hit.collider.name);
                     if(hit.collider.gameObject != null){
                         playerInventory.AddItem(PickUpObject);
