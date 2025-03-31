@@ -20,6 +20,7 @@ public class TradeUI : MonoBehaviour
         // Update UI dynamically based on seller and player data
         UpdateShop();
         UpdateEmeraldDisplay();
+        currentSeller.PlayIdleSound();
 
         // Show UI
         gameObject.SetActive(true);
@@ -55,6 +56,7 @@ public class TradeUI : MonoBehaviour
             player.Inventory.Add( itemPrefab);
             UpdateEmeraldDisplay();
             Debug.Log($"Bought {itemPrefab.name} for {price} emeralds.");
+            currentSeller.PlayAcceptSound();
         }
         else
         {

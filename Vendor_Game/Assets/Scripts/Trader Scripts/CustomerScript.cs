@@ -11,6 +11,7 @@ public class CustomerScript : MonoBehaviour
     public float rotationSpeed;
     public GameObject itemForSale;
     private GameObject player;
+    private AudioSource[] audioSources;
     private WorldInfo worldInfo;
     private float targetPlayerDistance;
     private Vector3 currentDirection;
@@ -18,6 +19,7 @@ public class CustomerScript : MonoBehaviour
 
     private void Start() {
         player = GameObject.FindWithTag("Player");
+        audioSources = GetComponents<AudioSource>();
         LoadWorldInfo();
         targetPlayerDistance = worldInfo.targetCustomerDistance;
         currentDirection = new Vector3(0.0f, 0.0f, 0.0f);
@@ -58,6 +60,22 @@ public class CustomerScript : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
     }
+
+
+    public void PlayIdleSound() {
+        if (audioSources.Length > 0) {
+            audioSources[0].Play();
+        }
+    }
+
+
+    public void PlayAcceptSound() {
+        if (audioSources.Length > 1) {
+            audioSources[1].Play();
+        }
+    }
+
+
     public GameObject GetItemForSale()
     {
         return itemForSale;
