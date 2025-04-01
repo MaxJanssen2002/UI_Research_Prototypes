@@ -57,6 +57,11 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X)) {
             InteractWithCustomer();
         }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            InteractWithCloset();
+        }
     }
 
 
@@ -76,7 +81,7 @@ public class PlayerScript : MonoBehaviour
 
     private void InteractWithCustomer() {
         shootingRay = new Ray (transform.position, transform.TransformDirection(Vector3.forward));
-        if (Physics.Raycast(shootingRay.origin, transform.TransformDirection(Vector3.forward), out hit, rayDistance)) {
+        if (Physics.Raycast(shootingRay.origin, transform.TransformDirection(Vector3.forward), out hit, 50f)) {
             rayDistance = hit.distance;
             
             if (hit.transform.gameObject.tag == "Customer") {
@@ -92,6 +97,44 @@ public class PlayerScript : MonoBehaviour
             }
         }
         else {
+            rayDistance = maxRayDistance;
+        }
+    }
+
+    private void InteractWithCloset()
+    {
+        shootingRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
+        if (Physics.Raycast(shootingRay.origin, transform.TransformDirection(Vector3.forward), out hit, rayDistance))
+        {
+            Debug.Log("Raycast hit");
+            rayDistance = hit.distance;
+
+            if (hit.transform.gameObject.CompareTag("ItemPlaceHolder"))
+            {
+                ItemPlaceHolder itemPlaceHolder = hit.transform.GetComponent<ItemPlaceHolder>();
+
+                if (itemPlaceHolder != null && Vector3.Distance(transform.position, hit.transform.position) <= targetCustomerDistance)
+                {
+                    if (itemPlaceHolder.heldItem != null)
+                    {
+                        GameObject itemToRemove = itemPlaceHolder.heldItem;
+                        itemPlaceHolder.RemoveItem();
+                        Inventory.Add(itemToRemove);
+                        Debug.Log("Added " + itemToRemove.name + " to inventory");
+                        Debug.Log("Inventory count: " + Inventory.Count);
+                    }
+                    else
+                    {
+                        GameObject itemToPlace = Inventory[0];
+                        itemPlaceHolder.PlaceItem(itemToPlace);
+                        Inventory.RemoveAt(0);
+                        Debug.Log("Removed " + itemToPlace.name + " from inventory");
+                    }
+                }
+            }
+        }
+        else
+        {
             rayDistance = maxRayDistance;
         }
     }
