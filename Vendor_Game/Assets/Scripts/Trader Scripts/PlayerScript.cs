@@ -81,7 +81,7 @@ public class PlayerScript : MonoBehaviour
 
     private void InteractWithCustomer() {
         shootingRay = new Ray (transform.position, transform.TransformDirection(Vector3.forward));
-        if (Physics.Raycast(shootingRay.origin, transform.TransformDirection(Vector3.forward), out hit, 50f)) {
+        if (Physics.Raycast(shootingRay.origin, transform.TransformDirection(Vector3.forward), out hit, 25f)) {
             rayDistance = hit.distance;
             
             if (hit.transform.gameObject.tag == "Customer") {
