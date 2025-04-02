@@ -3,8 +3,6 @@ using UnityEditor;
 using TMPro;
 using System.Collections.Generic;
 
-
-
 public class PlayerScript : MonoBehaviour
 {
     private Rigidbody rb;
@@ -23,16 +21,17 @@ public class PlayerScript : MonoBehaviour
     private RaycastHit hit;
     public int emeraldCount;
     public TradeUI tradeUI;
-
-    public List<GameObject> Inventory = new List<GameObject>();
+    
+    public PlayerInventory playerInventory;
 
     private void Start()
     {
+        playerInventory = FindFirstObjectByType<PlayerInventory>();
         rb = GetComponent<Rigidbody>();
         LoadWorldInfo();
         targetCustomerDistance = worldInfo.targetCustomerDistance;
-        // movementSpeed = 2.0f;
-        // rotationSpeed = 120.0f;
+        movementSpeed = 2.0f;
+        rotationSpeed = 120.0f;
         maxRayDistance = 100.0f;
         rayDistance = maxRayDistance;
         emeraldCount = 10;
@@ -135,15 +134,15 @@ public class PlayerScript : MonoBehaviour
                     {
                         GameObject itemToRemove = itemPlaceHolder.heldItem;
                         itemPlaceHolder.RemoveItem();
-                        Inventory.Add(itemToRemove);
+                        playerInventory.AddItem(itemToRemove);
                         Debug.Log("Added " + itemToRemove.name + " to inventory");
-                        Debug.Log("Inventory count: " + Inventory.Count);
+                        Debug.Log("Inventory count: " + playerInventory.inventoryData.items.Count);
                     }
-                    else if (Inventory.Count > 0)
+                    else if (playerInventory.inventoryData.items.Count > 0)
                     {
-                        GameObject itemToPlace = Inventory[0];
+                        GameObject itemToPlace = playerInventory.inventoryData.items[0];
                         itemPlaceHolder.PlaceItem(itemToPlace);
-                        Inventory.RemoveAt(0);
+                        playerInventory.RemoveItem(itemToPlace);
                         Debug.Log("Removed " + itemToPlace.name + " from inventory");
                     }
                     else
