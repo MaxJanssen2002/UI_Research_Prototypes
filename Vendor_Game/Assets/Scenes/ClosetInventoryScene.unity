@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105c7ef585a9d9440bf47d3f7606da67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sens: 100
+  sens: 10
   playerBody: {fileID: 2021211316}
 --- !u!1001 &160087083
 PrefabInstance:
@@ -1938,6 +1938,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8404987252589814135, guid: 6b33f85ef2081eb4a8bbd3cb0312bc90, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 2127559210}
+    - target: {fileID: 8404987252589814135, guid: 6b33f85ef2081eb4a8bbd3cb0312bc90, type: 3}
       propertyPath: emeraldCountText
       value: 
       objectReference: {fileID: 1348006242}
@@ -1963,6 +1967,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8330854847808721842, guid: 6b33f85ef2081eb4a8bbd3cb0312bc90, type: 3}
       insertIndex: 0
       addedObject: {fileID: 134535648}
+    - targetCorrespondingSourceObject: {fileID: 8330854847808721842, guid: 6b33f85ef2081eb4a8bbd3cb0312bc90, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1253990239}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6704960695921889025, guid: 6b33f85ef2081eb4a8bbd3cb0312bc90, type: 3}
       insertIndex: -1
@@ -2514,7 +2521,7 @@ RectTransform:
   - {fileID: 1637621236}
   - {fileID: 1348006241}
   - {fileID: 1949807717}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2021211316}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3980,6 +3987,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 2127559208}
   speed: 5
+--- !u!114 &2127559210 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2323728115169260104, guid: 6b33f85ef2081eb4a8bbd3cb0312bc90, type: 3}
+  m_PrefabInstance: {fileID: 974434772}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127559201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b306333eb061e409c0a9a39e19fd1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3994,4 +4012,3 @@ SceneRoots:
   - {fileID: 1731775214}
   - {fileID: 1016187668}
   - {fileID: 974434772}
-  - {fileID: 1253990239}
