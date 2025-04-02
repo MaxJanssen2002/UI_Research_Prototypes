@@ -1,8 +1,7 @@
 # Workshop UI (02/04/2025)
 
---- 
 > Max Janssen, Giannini Pruijn, Haroon Muhammad, Nusayba El Mourabet en Kyan Kersten.
---- 
+
 Het doel van deze workshop is om de basis van Unity UI te leren. 
 We gaan een game maken waarin de speler items op kan pakken, kan ruilen met een villager en items op kan slaan in een kast. De logica van deze game is al gemaakt, maar de UI ontbreekt nog.
 
