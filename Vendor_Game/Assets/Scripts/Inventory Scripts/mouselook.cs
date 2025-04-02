@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class mouselook : MonoBehaviour
 {
 
-    public float sens = 100f;
+    public float sens;
 
     public Transform playerBody;
 

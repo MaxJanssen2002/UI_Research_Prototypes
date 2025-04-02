@@ -8,11 +8,10 @@ public class TradeUI : MonoBehaviour
     public TMP_Text priceText;
     public Button buyButton;
     public Button closeButton;
-
     private CustomerScript currentSeller;
     private PlayerScript player;
-
     private PlayerInventory playerInventory;
+    private GameObject crossHair;
 
     private void Start(){
         if (playerInventory == null)
@@ -23,20 +22,19 @@ public class TradeUI : MonoBehaviour
                 Debug.LogError("PlayerInventory component not found!");
             }
         }
-
-        closeButton.onClick.AddListener(() => gameObject.SetActive(false));
+        crossHair = GameObject.Find("Invisible_Player/Canvas/Crosshair");
+        closeButton.onClick.AddListener(() => DeactiveTradeUI());
         gameObject.SetActive(false);
     }
-
+    
     public void OpenTrade(CustomerScript seller, PlayerScript playerScript)
     {
         currentSeller = seller;
         player = playerScript;
         UpdateShop();
         currentSeller.PlayIdleSound();
-
         // Show UI
-        gameObject.SetActive(true);
+        ActivateTradeUI();
     }
 
     void UpdateShop()
@@ -74,5 +72,21 @@ public class TradeUI : MonoBehaviour
         {
             Debug.Log("Not enough emeralds!");
         }
+    }
+
+    void ActivateTradeUI(){
+        gameObject.SetActive(true);
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true; 
+        crossHair.SetActive(false);
+    }
+
+    void DeactiveTradeUI(){
+        gameObject.SetActive(false);
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false; 
+        crossHair.SetActive(true);
     }
 }

@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEditor;
 using TMPro;
-using System.Collections.Generic;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -10,10 +9,6 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField]
     public TMP_Text emeraldCountText;
-
-    private float movementSpeed;
-    private float rotationSpeed;
-
     private float targetCustomerDistance;
     private float rayDistance;
     private float maxRayDistance;
@@ -30,8 +25,6 @@ public class PlayerScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         LoadWorldInfo();
         targetCustomerDistance = worldInfo.targetCustomerDistance;
-        movementSpeed = 2.0f;
-        rotationSpeed = 120.0f;
         maxRayDistance = 100.0f;
         rayDistance = maxRayDistance;
         emeraldCount = 10;
@@ -39,25 +32,10 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
-        //     rb.MovePosition(transform.position + transform.forward * movementSpeed * Time.deltaTime);
-        // }
-        // if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
-        //     rb.MovePosition(transform.position + -transform.forward * movementSpeed * Time.deltaTime);
-        // }
-        // if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
-        //     Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, -rotationSpeed, 0) * Time.deltaTime);
-        //     rb.MoveRotation(transform.rotation * deltaRotation);
-        // }
-        // if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
-        //     Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, rotationSpeed, 0) * Time.deltaTime);
-        //     rb.MoveRotation(transform.rotation * deltaRotation);
-        // }
         if (Input.GetKeyDown(KeyCode.X))
         {
             InteractWithCustomer();
         }
-
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             InteractWithCloset();
