@@ -25,36 +25,37 @@ public class PlayerScript : MonoBehaviour
     public TradeUI tradeUI;
 
     public List<GameObject> Inventory = new List<GameObject>();
-    
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         LoadWorldInfo();
         targetCustomerDistance = worldInfo.targetCustomerDistance;
-        movementSpeed = 2.0f;
-        rotationSpeed = 120.0f;
+        // movementSpeed = 2.0f;
+        // rotationSpeed = 120.0f;
         maxRayDistance = 100.0f;
         rayDistance = maxRayDistance;
         emeraldCount = 10;
     }
-    
+
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
-            rb.MovePosition(transform.position + transform.forward * movementSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
-            rb.MovePosition(transform.position + -transform.forward * movementSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
-            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, -rotationSpeed, 0) * Time.deltaTime);
-            rb.MoveRotation(transform.rotation * deltaRotation);
-        }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
-            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, rotationSpeed, 0) * Time.deltaTime);
-            rb.MoveRotation(transform.rotation * deltaRotation);
-        }
-        if (Input.GetKeyDown(KeyCode.X)) {
+        // if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
+        //     rb.MovePosition(transform.position + transform.forward * movementSpeed * Time.deltaTime);
+        // }
+        // if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
+        //     rb.MovePosition(transform.position + -transform.forward * movementSpeed * Time.deltaTime);
+        // }
+        // if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
+        //     Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, -rotationSpeed, 0) * Time.deltaTime);
+        //     rb.MoveRotation(transform.rotation * deltaRotation);
+        // }
+        // if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
+        //     Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, rotationSpeed, 0) * Time.deltaTime);
+        //     rb.MoveRotation(transform.rotation * deltaRotation);
+        // }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
             InteractWithCustomer();
         }
 
@@ -65,46 +66,61 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-    private void Update() {
+    private void Update()
+    {
         emeraldCountText.text = emeraldCount.ToString();
     }
 
 
-    private void LoadWorldInfo() {
+    private void LoadWorldInfo()
+    {
         worldInfo = AssetDatabase.LoadAssetAtPath<WorldInfo>("Assets/WorldInfo.asset");
-        if (!worldInfo) {
+        if (!worldInfo)
+        {
             worldInfo = ScriptableObject.CreateInstance<WorldInfo>();
             AssetDatabase.CreateAsset(worldInfo, "Assets/WorldInfo.asset");
         }
     }
 
 
-    private void InteractWithCustomer() {
-        shootingRay = new Ray (transform.position, transform.TransformDirection(Vector3.forward));
-        if (Physics.Raycast(shootingRay.origin, transform.TransformDirection(Vector3.forward), out hit, 25f)) {
+    private void InteractWithCustomer()
+    {
+        shootingRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
+        if (Physics.Raycast(shootingRay.origin, transform.TransformDirection(Vector3.forward), out hit, 25f))
+        {
             rayDistance = hit.distance;
-            
-            if (hit.transform.gameObject.tag == "Customer") {
+
+            if (hit.transform.gameObject.tag == "Customer")
+            {
 
                 CustomerScript customer = hit.transform.GetComponent<CustomerScript>();
 
-                if (customer != null && customer.role == CustomerScript.Role.Seller && 
+                if (customer != null && customer.role == CustomerScript.Role.Seller &&
                     Vector3.Distance(transform.position, hit.transform.position) <= targetCustomerDistance)
                 {
                     Debug.Log($"Opening trade with seller offering {customer.GetItemForSale().name} for {customer.GetPrice()} emeralds.");
-                    tradeUI.OpenTrade(customer,this); // Pass the specific seller to the UI
+                    tradeUI.OpenTrade(customer, this); // Pass the specific seller to the UI
                 }
             }
         }
-        else {
+        else
+        {
             rayDistance = maxRayDistance;
         }
     }
 
     private void InteractWithCloset()
     {
-        shootingRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-        if (Physics.Raycast(shootingRay.origin, transform.TransformDirection(Vector3.forward), out hit, rayDistance))
+        // Use the camera's forward direction for the raycast
+        Camera mainCamera = Camera.main;
+        if (mainCamera == null)
+        {
+            Debug.LogWarning("Main camera not found. Ensure the camera is tagged as 'MainCamera'.");
+            return;
+        }
+
+        shootingRay = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
+        if (Physics.Raycast(shootingRay.origin, shootingRay.direction, out hit, rayDistance))
         {
             Debug.Log("Raycast hit");
             rayDistance = hit.distance;
@@ -123,12 +139,16 @@ public class PlayerScript : MonoBehaviour
                         Debug.Log("Added " + itemToRemove.name + " to inventory");
                         Debug.Log("Inventory count: " + Inventory.Count);
                     }
-                    else
+                    else if (Inventory.Count > 0)
                     {
                         GameObject itemToPlace = Inventory[0];
                         itemPlaceHolder.PlaceItem(itemToPlace);
                         Inventory.RemoveAt(0);
                         Debug.Log("Removed " + itemToPlace.name + " from inventory");
+                    }
+                    else
+                    {
+                        Debug.Log("No items in inventory to place.");
                     }
                 }
             }
