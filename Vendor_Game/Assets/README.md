@@ -69,6 +69,29 @@ Als je op E klikt terwijl je aan het spelen bent, moet er een inventory op je sc
 
 
 ## Stap 3: Items ruilen met een Villager 
+
+Als je op x klikt twerijl je naar een villager kijkt wil je dat er een scherm opent om Items te kopen.
+
+1. Maak een canvas (``(Rechter muisknop -> UI -> Canvas)``). Noem dit VillagerTradeCanvas.
+2. Voeg hier een Panel aan toe (``(Rechter muisknop -> UI -> Panel)``). Noem Dit TradePanel. Zorg dat TradePanel een child van VillgagerTradeCanvas.
+3. Selecteer TradePanel, pas in de inspector het volgende aan:
+ a. Zet de Anchor Preset op Middle & Center ![img_991.png](img_991.png)
+ b. Zet de Width & Height op 400&300.
+ c. Pas onder Image de Color aan naar de gewenste kleur.
+4. Voeg aan de TradePanel 2 Button's en 2 Text Velden toe, (``(Rechter muisknop -> UI -> Button - TextMeshPro)``), (``(Rechter muisknop -> UI -> Text - TextMeshPro)``), zorg ervoor dat deze objecten child van TradePanel zijn.
+5. Noem de Tekstvelden ItemName & ItemPrice.
+6. Noem de Button BuyButton & CloseButton.
+8. De net gemaakte buttons bevatten een child, Text(TMP), pas hiervan de tekst aan door in de inspector in het tekstveld de gewenste tekst in te vullen.
+
+![img_992.png](img_992.png)
+Als het goed is heb je nu een scherm voor je met 2 buttons en 2 tekstvelden wat er ongeveer zo uit ziet, als dit het geval is ben je klaar voor de volgende stap
+We Gaan nu de scripts linken aan de buttons en tekstvelden.
+
+9. Voeg Het TradeUI Script Toe aan VillagerTradeCanvas.
+10. Voeg je gemaakte buttons en tekstvelden toe aan het script in de inspector.
+
+Als je nu naar een villager kijkt en ok 'X' klikt opent het trading menu, waar je in kan traden met de villager.
+
 ## Stap 4: Items opslaan in een kast
 In de winkel is een lege kast te zien. Deze heeft 12 slots waarin de speler items kan opslaan. Op het moment is het niet zichtbaar hoeveel items er in de kast zitten en welke prijs deze items hebben. 
 
