@@ -37,6 +37,19 @@ Als je nu op play drukt, zie je dat de crosshair en het emerald saldo zichtbaar 
 De canvas schaalt op het moment nog niet mee met de grootte van het scherm. Dit kan je aanpassen door in de inspector de ```Canvis Scaler -> UI Scale Mode``` naar ```Scale with Screen Size``` te zetten.
 
 ## Stap 2: Items toevoegen aan een Inventory
+
+Als je op E klikt terwijl je aan het spelen bent, moet er een inventory op je scherm verschijnen.
+
+### 2.1 Maak een rechthoek als subscherm
+
+1. Maak een canvas (``(GameObject -> UI -> Canvas)``). Noem dit een InventoryCanvas.
+2. Zorg dat de InventoryCanvas een child is van de InvisiblePlayer in de Hierarchy.
+3. Maak een Image (``(GameObject -> UI -> Image)``) en noem het InventoryMenu. Zorg dat de image 'Background' als Source Image heeft in de Inspector.
+![img_2.png](img_2.png)
+
+Ga naar de Hierarchy en selecteer ``(Invisible_Player -> InventoryCanvas -> InventoryMenu -> InventorySlots)``.
+Je ziet hier 
+
 ## Stap 3: Items ruilen met een Villager 
 ## Stap 4: Items opslaan in een kast
 In de winkel is een lege kast te zien. Deze heeft 12 slots waarin de speler items kan opslaan. Op het moment is het niet zichtbaar hoeveel items er in de kast zitten en welke prijs deze items hebben. 
