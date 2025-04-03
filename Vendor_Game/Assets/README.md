@@ -32,7 +32,8 @@ De scene is nu een stuk minder leeg en de speler kan rondlopen. Het is echter vr
 6. Onder Rect transform in de Inspector zie je de Anchor Presets. Zet deze naar ```Top``` en ```Left```. **Doe dit voor beide elementen**. 
 Dit zorgt ervoor dat de elementen op de juiste plek blijven staan, ongeacht de grootte van het scherm.
 
-    ![img_9.png](img_9.png)
+![img_9.png](img_9.png)
+
 7. Ga terug naar de Editor en sleep de door jou gemaakte tekst naar de ``Emerald Count Text`` variabele van het ``Player Script``, deze staat onder de player in de Hierarchy. 
 ![img_1.png](img_1.png)
 
@@ -53,18 +54,18 @@ Als je op E klikt terwijl je aan het spelen bent, moet er een inventory op je sc
 4. Maak een Image (``(GameObject -> UI -> Image)``) en noem het InventoryMenu. Zet het als child van de InventoryCanvas, mocht dit nog niet zo zijn.
 5. Stel (in de Inspector) de Rect Transform van de InventoryMenu in zoals in de afbeelding hieronder (let op dat er 'stretch' staat aan de linkerkant):
 
-![img_4.png](img_4.png)
+![img_21.png](img_21.png)
 
 6. Zorg dat de InventoryMenu ``Background`` als Source Image heeft in de Inspector. Let ook op dat je InventoryMenu een child is van je InventoryCanvas. De Color mag je zelf bepalen.
 
-![img_2.png](img_2.png)
+![img_22.png](img_22.png)
 
 ### 2.2 Maak een grid voor je items
 
 1. Voeg een component toe aan de InventoryMenu, genaamd een ``Grid Layout Group``.
 2. Stel de ``Grid Layout Group`` als volgt in (``Cell Space``, ``Shading`` en ``Child Alignment`` moeten worden aangepast):
 
-![img_3.png](img_3.png)
+![img_23.png](img_23.png)
 
 ### 2.3 Voorzie de player van de UI
 
@@ -88,16 +89,13 @@ Als je op E klikt terwijl je aan het spelen bent, moet er een inventory op je sc
 
 Als het goed is ziet de Inspector van Invisible_Player er nu zo uit (``Trade UI`` en ``Select Item Prompt`` worden later ingevuld):
 
-![img_9.png](img_9.png)
+![img_24.png](img_24.png)
 
 3. Start het spel en houd E ingedrukt. Als het goed is zie je het volgende:
 
-![img_10.png](img_10.png)
+![img_25.png](img_25.png)
 
-Als je de inhoud van het ScriptableObject ``Assets/InventoryData`` buiten runtime verandert, kun je objecten weghalen en toevoegen. Je kunt de volgende objecten toevoegen:
-    - Master_Ball
-    - Book
-    - Among_Us_Figure
+Als je de inhoud van het ScriptableObject ``Assets/InventoryData`` buiten runtime verandert, kun je objecten weghalen en toevoegen. Je kunt een Master_Ball, een Book en een Among_Us_Figure toevoegen.
 
 ## Stap 3: Items ruilen met een Villager 
 
