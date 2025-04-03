@@ -345,8 +345,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105c7ef585a9d9440bf47d3f7606da67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sens: 10
+  sens: 280.8
   playerBody: {fileID: 2021211316}
+--- !u!1 &135100087 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1961142147219026186, guid: 6b33f85ef2081eb4a8bbd3cb0312bc90, type: 3}
+  m_PrefabInstance: {fileID: 974434772}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &160087083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1845,6 +1850,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2323728115169260104, guid: 6b33f85ef2081eb4a8bbd3cb0312bc90, type: 3}
+      propertyPath: inventoryData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3548611c327c3e04399a4f71e3644e79, type: 2}
     - target: {fileID: 3266425722341965580, guid: 6b33f85ef2081eb4a8bbd3cb0312bc90, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1937,6 +1946,10 @@ PrefabInstance:
       propertyPath: emeraldCount
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 8404987252589814135, guid: 6b33f85ef2081eb4a8bbd3cb0312bc90, type: 3}
+      propertyPath: InventoryMenu
+      value: 
+      objectReference: {fileID: 135100087}
     - target: {fileID: 8404987252589814135, guid: 6b33f85ef2081eb4a8bbd3cb0312bc90, type: 3}
       propertyPath: playerInventory
       value: 

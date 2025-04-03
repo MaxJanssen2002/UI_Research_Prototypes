@@ -16,8 +16,14 @@ public class PlayerScript : MonoBehaviour
     private RaycastHit hit;
     public int emeraldCount;
     public TradeUI tradeUI;
+
+    private bool selectingItem;
+    private ItemPlaceHolder itemPlaceHolder;
     
     public PlayerInventory playerInventory;
+
+    [SerializeField] 
+    private GameObject InventoryMenu;
 
     private void Start()
     {
@@ -28,6 +34,8 @@ public class PlayerScript : MonoBehaviour
         maxRayDistance = 100.0f;
         rayDistance = maxRayDistance;
         emeraldCount = 10;
+        itemPlaceHolder = null;
+        selectingItem = false;
     }
 
     private void FixedUpdate()
@@ -36,9 +44,13 @@ public class PlayerScript : MonoBehaviour
         {
             InteractWithCustomer();
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !selectingItem)
         {
             InteractWithCloset();
+        }
+        else if (selectingItem)
+        {
+            SelectItemToPlace();
         }
     }
 
@@ -104,7 +116,7 @@ public class PlayerScript : MonoBehaviour
 
             if (hit.transform.gameObject.CompareTag("ItemPlaceHolder"))
             {
-                ItemPlaceHolder itemPlaceHolder = hit.transform.GetComponent<ItemPlaceHolder>();
+                itemPlaceHolder = hit.transform.GetComponent<ItemPlaceHolder>();
 
                 if (itemPlaceHolder != null && Vector3.Distance(transform.position, hit.transform.position) <= targetCustomerDistance)
                 {
@@ -118,10 +130,8 @@ public class PlayerScript : MonoBehaviour
                     }
                     else if (playerInventory.inventoryData.items.Count > 0)
                     {
-                        GameObject itemToPlace = playerInventory.inventoryData.items[0];
-                        itemPlaceHolder.PlaceItem(itemToPlace);
-                        playerInventory.RemoveItem(itemToPlace);
-                        Debug.Log("Removed " + itemToPlace.name + " from inventory");
+                        InventoryMenu.SetActive(true);
+                        selectingItem = true;
                     }
                     else
                     {
@@ -144,5 +154,20 @@ public class PlayerScript : MonoBehaviour
     public void SpendEmeralds(int amount)
     {
         emeraldCount -= amount;
+    }
+
+    private void SelectItemToPlace() {
+
+        if (Input.GetKeyDown(KeyCode.Mouse0)) {
+            if (itemPlaceHolder) {
+                GameObject itemToPlace = playerInventory.inventoryData.items[0];
+                itemPlaceHolder.PlaceItem(itemToPlace);
+                playerInventory.RemoveItem(itemToPlace);
+                Debug.Log("Removed " + itemToPlace.name + " from inventory");
+
+                InventoryMenu.SetActive(false);
+                selectingItem = false;
+            }
+        }
     }
 }
