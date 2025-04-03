@@ -36,6 +36,8 @@ Als je nu op play drukt, zie je dat de crosshair en het emerald saldo zichtbaar 
 
 De canvas schaalt op het moment nog niet mee met de grootte van het scherm. Dit kan je aanpassen door in de inspector de ```Canvis Scaler -> UI Scale Mode``` naar ```Scale with Screen Size``` te zetten.
 
+### Resultaat
+![img_5.png](img_5.png)
 ## Stap 2: Items toevoegen aan een Inventory
 
 Als je op E klikt terwijl je aan het spelen bent, moet er een inventory op je scherm verschijnen.
@@ -54,3 +56,26 @@ Je ziet hier
 ## Stap 4: Items opslaan in een kast
 In de winkel is een lege kast te zien. Deze heeft 12 slots waarin de speler items kan opslaan. Op het moment is het niet zichtbaar hoeveel items er in de kast zitten en welke prijs deze items hebben. 
 
+### 4.1 Item aantal boven de kast 
+1. Maak een nieuwe canvas, zorg ervoor dat de Render Mode op ```World Space``` staat. Dit zorgt ervoor dat de canvas in de wereld staat en niet in het scherm, dit maakt de UI 3D. Zet de Pos X op 0, Pos y op 2, width op 2 en height op 1.
+2. Voeg een Text toe aan de canvas en hernoem deze naar `ItemStorage`. Zet ook hier de Pos X en Pos Y op 0, Width op 2 en Height op 1. Zet de Font Size op 0.5 en de Alignment op ```Center``` en ```Middle```. Verander de tekst naar ``0``. 
+3. Herhaal stap 1 met een Raw Image en hernoem deze naar `ItemFrame`. Selecteer bij de texture ``Item_Frame_29_JE3``. De aanbevolen Width en Height van de image is ``0.5``. Zorg er zelf voor dat deze image naast de tekst staat.
+4. Voeg aan het canvas het script ```Look at Cam``` toe. Sleep de main camera naar de ```Fps Cam```. Hierdoor blijft de canvas altijd naar de camera kijken. 
+![img_8.png](img_8.png)
+5. Voeg het canvas toe als child voor de ```Closet``` prefab.
+6. Selecteer de closet prefab in de Hierarchy. Voeg nu de ``ItemStorage`` tekst toe aan de `CountText` van het `Closet` script.
+
+### Resultaat 
+![img_6.png](img_6.png)
+
+
+### 4.2 Item prijs boven de items
+1. Herhaal stap 1.1 van 4.1 met een nieuwe canvas. 
+2. Zorg er nu voor dat er een Raw Image (Emerald) en een Text aan de canvas zitten. Zorg er zelf voor dat de tekst en de image goed staan.
+3. Voeg aan het canvas het script ```Look at Cam``` toe. Sleep de main camera naar de ```Fps Cam```.
+4. Voeg het canvas toe als child voor de ```Masterball, Among us Figure en Book``` prefabs.
+5. Pas de ``Rect Transform`` van de canvas voor iedere prefab aan. Het kan zijn dat je de Y positie een beetje aan moet passen om de canvas goed te laten staan.
+![img_7.png](img_7.png)
+
+### Resultaat
+![img_4.png](img_4.png)
