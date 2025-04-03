@@ -91,6 +91,7 @@ In de winkel is een lege kast te zien. Deze heeft 12 slots waarin de speler item
 3. Voeg aan het canvas het script ```Look at Cam``` toe. Sleep de main camera naar de ```Fps Cam```.
 4. Voeg het canvas toe als child voor de ```Masterball, Among us Figure en Book``` prefabs.
 5. Pas de ``Rect Transform`` van het canvas voor iedere prefab aan. Het kan zijn dat je de Y positie een beetje aan moet passen om het canvas goed te laten staan.
+
 ![img_7.png](img_7.png)
 
 ### Resultaat
