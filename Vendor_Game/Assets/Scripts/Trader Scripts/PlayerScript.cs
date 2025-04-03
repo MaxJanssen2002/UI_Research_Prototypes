@@ -20,7 +20,15 @@ public class PlayerScript : MonoBehaviour
     private bool selectingItem;
     private ItemPlaceHolder itemPlaceHolder;
     
-    public PlayerInventory playerInventory;
+    [SerializeField]
+    private PlayerInventory playerInventory;
+    [SerializeField]
+    private mouselook cameraTurner;
+    [SerializeField]
+    private GameObject inventorySlots;
+    private RectTransform inventorySlotsRect;
+    [SerializeField]
+    private TMP_Text selectItemPrompt;
 
     [SerializeField] 
     private GameObject InventoryMenu;
@@ -36,6 +44,10 @@ public class PlayerScript : MonoBehaviour
         emeraldCount = 10;
         itemPlaceHolder = null;
         selectingItem = false;
+
+        if (inventorySlots) { inventorySlotsRect = inventorySlots.GetComponent<RectTransform>(); }
+        if (selectItemPrompt) { selectItemPrompt.gameObject.SetActive(false); }
+        
     }
 
     private void FixedUpdate()
@@ -44,13 +56,14 @@ public class PlayerScript : MonoBehaviour
         {
             InteractWithCustomer();
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !selectingItem)
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            InteractWithCloset();
-        }
-        else if (selectingItem)
-        {
-            SelectItemToPlace();
+            if (!selectingItem) {
+                InteractWithCloset();
+            }
+            else {
+                SelectItemToPlace();
+            }
         }
     }
 
@@ -131,7 +144,11 @@ public class PlayerScript : MonoBehaviour
                     else if (playerInventory.inventoryData.items.Count > 0)
                     {
                         InventoryMenu.SetActive(true);
+                        if (selectItemPrompt) { selectItemPrompt.gameObject.SetActive(true); }
+                        cameraTurner.shouldRotate = false;
                         selectingItem = true;
+                        Cursor.visible = true; 
+                        Cursor.lockState = CursorLockMode.None;
                     }
                     else
                     {
@@ -158,16 +175,59 @@ public class PlayerScript : MonoBehaviour
 
     private void SelectItemToPlace() {
 
-        if (Input.GetKeyDown(KeyCode.Mouse0)) {
-            if (itemPlaceHolder) {
-                GameObject itemToPlace = playerInventory.inventoryData.items[0];
-                itemPlaceHolder.PlaceItem(itemToPlace);
-                playerInventory.RemoveItem(itemToPlace);
-                Debug.Log("Removed " + itemToPlace.name + " from inventory");
+        int itemIndex = CheckInventorySlots();
 
-                InventoryMenu.SetActive(false);
-                selectingItem = false;
+        if (itemPlaceHolder && itemIndex != -1) {
+            GameObject itemToPlace = playerInventory.inventoryData.items[itemIndex];
+            itemPlaceHolder.PlaceItem(itemToPlace);
+            playerInventory.RemoveItem(itemToPlace);
+            Debug.Log("Removed " + itemToPlace.name + " from inventory");
+
+            InventoryMenu.SetActive(false);
+            if (selectItemPrompt) { selectItemPrompt.gameObject.SetActive(false); }
+            cameraTurner.shouldRotate = true;
+            selectingItem = false;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
+
+    private int CheckInventorySlots() {
+        int amountOfChildren = inventorySlots.transform.childCount;
+        float posX, posY, width, height;
+        
+        for (int childIndex = 0; childIndex < amountOfChildren; ++childIndex) {
+            RectTransform rect = inventorySlots.transform.GetChild(childIndex).GetComponent<RectTransform>();
+
+            if (rect) {
+                posX = rect.anchoredPosition.x;
+                posY = -rect.anchoredPosition.y;
+                width = rect.sizeDelta.x;
+                height = rect.sizeDelta.y;
+
+                if (InRectangle( MousePosInInventory(), posX, posY, width, height )) {
+                    return childIndex;
+                }
             }
         }
+        return -1;
+    }
+
+
+    private Vector2 MousePosInInventory() {
+        Vector2 mousePos;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(inventorySlotsRect, Input.mousePosition, null, out mousePos);
+        mousePos.x += (inventorySlotsRect.rect.width / 2);
+        mousePos.y = (inventorySlotsRect.rect.height / 2) - mousePos.y;
+        return mousePos;
+    }
+
+
+    private bool InRectangle(Vector2 pos, float rectX, float rectY, float rectWidth, float rectHeight) {
+        return pos.x >= rectX - rectWidth / 2
+            && pos.x <= rectX + rectWidth / 2
+            && pos.y >= rectY - rectHeight / 2
+            && pos.y <= rectY + rectHeight / 2;
     }
 }

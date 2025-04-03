@@ -9,23 +9,28 @@ public class mouselook : MonoBehaviour
 
     public Transform playerBody;
 
+    public bool shouldRotate;
+
     float xRotation = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        shouldRotate = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * sens * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * sens * Time.deltaTime;
-    
-    xRotation -= mouseY;
-    xRotation = math.clamp(xRotation, -90f, 90f);
+        if (shouldRotate) {
+            float mouseX = Input.GetAxis("Mouse X") * sens * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * sens * Time.deltaTime;
+        
+            xRotation -= mouseY;
+            xRotation = math.clamp(xRotation, -90f, 90f);
 
-    transform.localRotation = Quaternion.Euler(xRotation,0f,0f);
-        playerBody.Rotate(Vector3.up * mouseX); 
+            transform.localRotation = Quaternion.Euler(xRotation,0f,0f);
+            playerBody.Rotate(Vector3.up * mouseX); 
+        }
     }
 }
