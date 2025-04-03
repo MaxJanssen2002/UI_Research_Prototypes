@@ -38,17 +38,18 @@ De canvas schaalt op het moment nog niet mee met de grootte van het scherm. Dit 
 
 ### Resultaat
 ![img_5.png](img_5.png)
-## Stap 2: Items toevoegen aan een Inventory
+## Stap 2: Items tonen in een Inventory
 
 Als je op E klikt terwijl je aan het spelen bent, moet er een inventory op je scherm verschijnen.
 
 ### 2.1 Maak een rechthoek als subscherm
 
 1. Maak een canvas (``(GameObject -> UI -> Canvas)``). Noem dit een InventoryCanvas.
-2. Zet de UI Scale Mode op ``Scale with Screen Size``.
+2. Zet (in de Inspector) de UI Scale Mode op ``Scale with Screen Size``.
+3. Zet de Reference Resolution op ``X: 1920`` en ``Y: 1080``.
 3. Zorg dat de InventoryCanvas een child is van de InvisiblePlayer in de Hierarchy.
-4. Maak een Image (``(GameObject -> UI -> Image)``) en noem het InventoryMenu. 
-5. Stel (in de Inspector) de Rect Transform van de InventoryMenu in zoals in de afbeelding hieronder (let op er 'stretch' staat aan de linkerkant):
+4. Maak een Image (``(GameObject -> UI -> Image)``) en noem het InventoryMenu. Zet het als child van de InventoryCanvas, mocht dit nog niet zo zijn.
+5. Stel (in de Inspector) de Rect Transform van de InventoryMenu in zoals in de afbeelding hieronder (let op dat er 'stretch' staat aan de linkerkant):
 
 ![img_4.png](img_4.png)
 
@@ -58,13 +59,43 @@ Als je op E klikt terwijl je aan het spelen bent, moet er een inventory op je sc
 
 ### 2.2 Maak een grid voor je items
 
-5. Voeg een component toe aan de InventoryMenu, genaamd een ``Grid Layout Group``.
-6. Stel de ``Grid Layout Group`` als volgt in:
+1. Voeg een component toe aan de InventoryMenu, genaamd een ``Grid Layout Group``.
+2. Stel de ``Grid Layout Group`` als volgt in (``Cell Space``, ``Shading`` en ``Child Alignment`` moeten worden aangepast):
 
 ![img_3.png](img_3.png)
 
+### 2.3 Voorzie de player van de UI
 
+1. Voeg twee componenten toe aan de Inspector van de Invisible_Player:
+    - Een script genaamd ``Player Inventory`` (dit script bestaat al).
+        - ``Player Inventory`` leest de informatie uit het ScriptableObject in ``Assets/InventoryData`` uit en instantieert straks de items in de Grid Layout Group die je hebt toegevoegd.
+    - Een script genaamd ``Inventory Manager`` (bestaat ook al).
+        - ``Inventory Manager`` zorgt ervoor dat de UI van de inventory zichtbaar wordt als je op E drukt en weer onzichtbaar wordt als je E loslaat. Ook wordt de crosshair onzichtbaar gemaakt als de inventory zichtbaar is.
+2. De Player Script, de Player Inventory en de Inventory Manager hebben wel wat informatie nodig om te werken. Voeg de volgende informatie toe:
+    - Aan de Player Script:
+        - Sleep je InventoryMenu in ``Inventory Slots``.
+        - Sleep je InventoryMenu in ``Inventory Menu``.
+        - Sleep de PlayerInventory script in ``Player Inventory``.
+    - Aan de Player Inventory:
+        - Sleep het ScriptableObject in ``Assets/InventoryData`` naar ``Inventory Data``.
+        - Sleep je InventoryMenu in ``Inventory Slots``.
+        - Sleep de prefab genaamd ItemSlot in ``Assets/Prefabs/Inventory Prefabs`` naar ``Item Slot Prefab``. Verander de Color in de Image-component van deze prefab als je de kleur blauw niet mooi vindt.
+    - Aan de Inventory Manager:
+        - Sleep je InventoryMenu in ``Inventory Menu``.
+        - Sleep je Crosshair uit Stap 1 naar ``Cross Hair``.
 
+Als het goed is ziet de Inspector van Invisible_Player er nu zo uit (``Trade UI`` en ``Select Item Prompt`` worden later ingevuld):
+
+![img_9.png](img_9.png)
+
+3. Start het spel en houd E ingedrukt. Als het goed is zie je het volgende:
+
+![img_10.png](img_10.png)
+
+Als je de inhoud van het ScriptableObject ``Assets/InventoryData`` buiten runtime verandert, kun je objecten weghalen en toevoegen. Je kunt de volgende objecten toevoegen:
+    - Master_Ball
+    - Book
+    - Among_Us_Figure
 
 ## Stap 3: Items ruilen met een Villager 
 ## Stap 4: Items opslaan in een kast

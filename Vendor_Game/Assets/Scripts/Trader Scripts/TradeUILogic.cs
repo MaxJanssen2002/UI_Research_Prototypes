@@ -11,7 +11,7 @@ public class TradeUI : MonoBehaviour
     private CustomerScript currentSeller;
     private PlayerScript player;
     private PlayerInventory playerInventory;
-    private GameObject crossHair;
+    [SerializeField] private GameObject crossHair;
 
     private void Start(){
         if (playerInventory == null)
@@ -19,7 +19,7 @@ public class TradeUI : MonoBehaviour
             playerInventory = FindFirstObjectByType<PlayerInventory>();
             if (playerInventory == null)
             {
-                Debug.LogError("PlayerInventory component not found!");
+                Debug.Log("PlayerInventory component not found!");
             }
         }
         crossHair = GameObject.Find("Invisible_Player/Canvas/Crosshair");
@@ -79,7 +79,7 @@ public class TradeUI : MonoBehaviour
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true; 
-        crossHair.SetActive(false);
+        if (crossHair) { crossHair.SetActive(false); }
     }
 
     void DeactiveTradeUI(){
@@ -87,6 +87,6 @@ public class TradeUI : MonoBehaviour
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false; 
-        crossHair.SetActive(true);
+        if (crossHair) { crossHair.SetActive(true); }
     }
 }

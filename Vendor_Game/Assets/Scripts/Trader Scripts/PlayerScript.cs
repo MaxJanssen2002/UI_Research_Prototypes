@@ -7,31 +7,30 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody rb;
     private WorldInfo worldInfo;
 
+    public int emeraldCount;
     [SerializeField]
-    public TMP_Text emeraldCountText;
+    private TMP_Text emeraldCountText;
     private float targetCustomerDistance;
     private float rayDistance;
     private float maxRayDistance;
     private Ray shootingRay;
     private RaycastHit hit;
-    public int emeraldCount;
-    public TradeUI tradeUI;
 
     private bool selectingItem;
     private ItemPlaceHolder itemPlaceHolder;
     
     [SerializeField]
-    private PlayerInventory playerInventory;
-    [SerializeField]
-    private mouselook cameraTurner;
-    [SerializeField]
     private GameObject inventorySlots;
+    [SerializeField] 
+    private GameObject InventoryMenu;
+    public TradeUI tradeUI;
+    [SerializeField]
+    private PlayerInventory playerInventory;
     private RectTransform inventorySlotsRect;
     [SerializeField]
     private TMP_Text selectItemPrompt;
-
-    [SerializeField] 
-    private GameObject InventoryMenu;
+    [SerializeField]
+    private mouselook cameraTurner;
 
     private void Start()
     {
@@ -70,7 +69,9 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-        emeraldCountText.text = emeraldCount.ToString();
+        if (emeraldCountText) {
+            emeraldCountText.text = emeraldCount.ToString();
+        }
     }
 
 
@@ -101,7 +102,9 @@ public class PlayerScript : MonoBehaviour
                     Vector3.Distance(transform.position, hit.transform.position) <= targetCustomerDistance)
                 {
                     Debug.Log($"Opening trade with seller offering {customer.GetItemForSale().name} for {customer.GetPrice()} emeralds.");
-                    tradeUI.OpenTrade(customer, this); // Pass the specific seller to the UI
+                    if (tradeUI) {
+                        tradeUI.OpenTrade(customer, this); // Pass the specific seller to the UI
+                    }
                 }
             }
         }

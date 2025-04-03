@@ -6,12 +6,11 @@ public class InventoryManager : MonoBehaviour
     public GameObject InventoryMenu;
     private bool menuActivated = false;
     private Keyboard keyboard = Keyboard.current;
-    private GameObject crossHair;
+    [SerializeField] private GameObject crossHair;
 
     void Start()
     {
         InventoryMenu.SetActive(false);
-        crossHair = transform.parent.Find("Canvas/Crosshair")?.gameObject;
     }
 
     void Update()
@@ -23,8 +22,7 @@ public class InventoryManager : MonoBehaviour
             menuActivated = false;
             Cursor.lockState = CursorLockMode.Locked;  
             Cursor.visible = false;
-            crossHair.SetActive(true);
-
+            if (crossHair) { crossHair.SetActive(true); }
         }    
         else if(keyboard.eKey.wasPressedThisFrame && !menuActivated){
             Time.timeScale = 0;
@@ -33,7 +31,7 @@ public class InventoryManager : MonoBehaviour
             menuActivated = true;          
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true; 
-            crossHair.SetActive(false);
+            if (crossHair) { crossHair.SetActive(false); }
         }
     }
 }
