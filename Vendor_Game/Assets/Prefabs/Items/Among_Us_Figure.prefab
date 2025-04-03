@@ -2822,6 +2822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1047601702067334195}
   - component: {fileID: 7644435767270385838}
+  - component: {fileID: -7487747227807253562}
   m_Layer: 0
   m_Name: Among_Us_Figure
   m_TagString: Untagged
@@ -2867,6 +2868,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.2, y: 0.26, z: 0.2}
   m_Center: {x: 0, y: 0.17, z: 0}
+--- !u!114 &-7487747227807253562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4893033341989862893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6d03d1ad729784f90814520bd79082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemSprite: {fileID: 21300000, guid: 8ff131549ebcd1043bf68eba72fceec4, type: 3}
 --- !u!1 &5000535230500224803
 GameObject:
   m_ObjectHideFlags: 0

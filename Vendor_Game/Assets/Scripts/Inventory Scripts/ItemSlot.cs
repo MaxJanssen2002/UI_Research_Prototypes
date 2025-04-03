@@ -4,25 +4,27 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour
 {
     public Image itemImage;
-
-    public Text itemNameText;
     public GameObject itemModel;
 
     public void SetItem(GameObject item)
     {
-        // functie voor het toevoegen van sprite naam prijs etc 
-        
-        // Sprite itemSprite = item.GetComponent<SpriteRenderer>()?.sprite;
-        // if (itemSprite != null && itemImage != null)
-        // {
-        //     //itemImage.sprite = itemSprite;
-        // }
 
-        // if (itemNameText != null)
-        // {
-        //     itemNameText.text = item.name;
-        // }
+        if (item == null)
+        {
+            Debug.LogError("SetItem called with a null item!");
+            return;
+        }
 
         Debug.Log("Item set in slot: " + item.name);
+
+        ItemData itemData = item.GetComponent<ItemData>();
+        if (itemData != null && itemData.itemSprite != null)
+        {
+            itemImage.sprite = itemData.itemSprite;
+        }
+        else
+        {
+            Debug.LogWarning("No sprite found for item: " + item.name);
+        }
     }
 }
