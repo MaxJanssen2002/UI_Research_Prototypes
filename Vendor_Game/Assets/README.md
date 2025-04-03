@@ -34,7 +34,7 @@ De scene is nu een stuk minder leeg en de speler kan rondlopen. Het is echter vr
 
 Als je nu op play drukt, zie je dat de crosshair en het emerald saldo zichtbaar zijn!
 
-De canvas schaalt op het moment nog niet mee met de grootte van het scherm. Dit kan je aanpassen door in de inspector de ```Canvis Scaler -> UI Scale Mode``` naar ```Scale with Screen Size``` te zetten.
+De canvas schaalt op het moment nog niet mee met de grootte van het scherm. Dit kan je aanpassen door in de inspector de ```Canvas Scaler -> UI Scale Mode``` naar ```Scale with Screen Size``` te zetten.
 
 ## Stap 2: Items toevoegen aan een Inventory
 
@@ -43,12 +43,26 @@ Als je op E klikt terwijl je aan het spelen bent, moet er een inventory op je sc
 ### 2.1 Maak een rechthoek als subscherm
 
 1. Maak een canvas (``(GameObject -> UI -> Canvas)``). Noem dit een InventoryCanvas.
-2. Zorg dat de InventoryCanvas een child is van de InvisiblePlayer in de Hierarchy.
-3. Maak een Image (``(GameObject -> UI -> Image)``) en noem het InventoryMenu. Zorg dat de image 'Background' als Source Image heeft in de Inspector.
+2. Zet de UI Scale Mode op ``Scale with Screen Size``.
+3. Zorg dat de InventoryCanvas een child is van de InvisiblePlayer in de Hierarchy.
+4. Maak een Image (``(GameObject -> UI -> Image)``) en noem het InventoryMenu. 
+5. Stel (in de Inspector) de Rect Transform van de InventoryMenu in zoals in de afbeelding hieronder (let op er 'stretch' staat aan de linkerkant):
+
+![img_4.png](img_4.png)
+
+6. Zorg dat de InventoryMenu ``Background`` als Source Image heeft in de Inspector. Let ook op dat je InventoryMenu een child is van je InventoryCanvas. De Color mag je zelf bepalen.
+
 ![img_2.png](img_2.png)
 
-Ga naar de Hierarchy en selecteer ``(Invisible_Player -> InventoryCanvas -> InventoryMenu -> InventorySlots)``.
-Je ziet hier 
+### 2.2 Maak een grid voor je items
+
+5. Voeg een component toe aan de InventoryMenu, genaamd een ``Grid Layout Group``.
+6. Stel de ``Grid Layout Group`` als volgt in:
+
+![img_3.png](img_3.png)
+
+
+
 
 ## Stap 3: Items ruilen met een Villager 
 ## Stap 4: Items opslaan in een kast
