@@ -1,3 +1,5 @@
-Elk Unity-project in deze repository moet een .gitignore-file bevatten.
+Let op dat je in de workshop-branch zit!
 
-Je kunt voor elk nieuwe Unity-project in deze repository gewoon de .gitignore-file uit de folder 'UI_Toolkit_VisualTree_and_EventHandler' kopiëren en in de root van jouw Unity-project plakken.
+Het project dat je hiervoor moet hebben is de Vendor_Game. De README daarvan staat in de Assets-folder.
+
+Als je klaar bent met de vier stappen van dit project, kun je nog kijken naar het project genaamd UI_Toolkit_VisualTree_and_EventHandler.
