@@ -8,8 +8,7 @@ public class PlayerScript : MonoBehaviour
     private WorldInfo worldInfo;
 
     public int emeraldCount;
-    [SerializeField]
-    private TMP_Text emeraldCountText;
+    [SerializeField] private TMP_Text emeraldCountText;
     private float targetCustomerDistance;
     private float rayDistance;
     private float maxRayDistance;

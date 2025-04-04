@@ -34,10 +34,16 @@ Dit zorgt ervoor dat de elementen op de juiste plek blijven staan, ongeacht de g
 
 ![img_9.png](img_9.png)
 
-7. Ga terug naar de Editor en sleep de door jou gemaakte tekst naar de ``Emerald Count Text`` variabele van het ``Player Script``, deze staat onder de player in de Hierarchy. 
+7. Kijk ook even naar in ``Scripts/Trader Scripts/PlayerScript``. Daar zijn drie belangrijke coderegels om de UI 'op de hoogte' te houden van je emeraldsaldo via een script.
+
+- ``using TMPro;`` (regel 3, dit is de library die ondersteuning geeft voor het TMP_Text-datatype.)
+- ``[SerializeField] private TMP_Text emeraldCountText;`` (regel 11, dit zal de instantie van jouw tekst in de UI zijn.)
+- ``emeraldCountText.text = emeraldCount.ToString();`` (regel 72, hiermee wordt de tekst in de UI up to date gehouden.)
+
+8. Ga terug naar de Editor en sleep de door jou gemaakte tekst naar de ``Emerald Count Text`` variabele van het ``Player Script``, deze staat onder de Invisible_Player in de Hierarchy. Er staan nog allerlei variabelen die nog moeten ingevuld, maar die komen later.
 ![img_1.png](img_1.png)
 
-Het canvas schaalt nog niet mee met de grootte van het scherm. Dit kan je aanpassen door in de inspector de ```Canvis Scaler -> UI Scale Mode``` naar ```Scale with Screen Size``` te zetten.
+9. Het canvas schaalt nog niet mee met de grootte van het scherm. Dit kan je aanpassen door in de inspector de ```Canvis Scaler -> UI Scale Mode``` naar ```Scale with Screen Size``` te zetten.
 
 ### Resultaat
 ![img_5.png](img_5.png)
