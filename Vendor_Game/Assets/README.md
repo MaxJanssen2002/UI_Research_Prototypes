@@ -1,4 +1,4 @@
-# Workshop UI (02/04/2025)
+# Workshop UI (04/04/2025)
 
 > Max Janssen, Giannini Pruijn, Haroon Muhammad, Nusayba El Mourabet en Kyan Kersten.
 
