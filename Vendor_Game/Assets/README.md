@@ -63,7 +63,7 @@ Als je op E klikt terwijl je aan het spelen bent, moet er een inventory op je sc
 ### 2.2 Maak een grid voor je items
 
 1. Voeg een component toe aan de InventoryMenu, genaamd een ``Grid Layout Group``.
-2. Stel de ``Grid Layout Group`` als volgt in (``Cell Space``, ``Shading`` en ``Child Alignment`` moeten worden aangepast):
+2. Stel de ``Grid Layout Group`` als volgt in (``Cell Size``, ``Shading`` en ``Child Alignment`` moeten worden aangepast):
 
 ![img_23.png](img_23.png)
 
