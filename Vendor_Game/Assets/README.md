@@ -7,12 +7,9 @@ We gaan een game maken waarin de speler items op kan pakken, kan ruilen met een 
 
 ## 1. Project Openen 
 Ga naar de [demo repo](https://github.com/MaxJanssen2002/UI_Research_Prototypes/tree/main/Vendor_Game) op GitHub en clone de ``workshop`` branch. Open vervolgens het project in Unity. 
-De scene die geopend wordt is de Main scene, deze is op het moment nog leeg. 
+De scene die geopend wordt is de ``ShopScene``.
 
-1. Sleep de world prefab in de scene. 
-2. Sleep de player prefab in de scene.
-
-De scene is nu een stuk minder leeg en de speler kan rondlopen. Het is echter vrij lastig om te zien waar je muis zit en weten we niet hoeveel emeralds de speler heeft. 
+Je kunt als de speler rondlopen in de scene. Het is echter vrij lastig om te zien waar je muis zit en weten we niet hoeveel emeralds de speler heeft.
 
 ## Stap 1: Speler UI 
 
